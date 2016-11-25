@@ -1,738 +1,302 @@
 <!DOCTYPE html>
 <html>
 <html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>minilabz</title>
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+
   
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>gpSYSTEM - DEMO by Manivannan</title>
-    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
-    <link rel="stylesheet" type="text/css" href="mail.css">
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
-    <style type="text/css">
-      body {     padding-top: 60px;font-family: 'Roboto', sans-serif;}
-  .header {
+  <style type="text/css">
+    body {
+      padding-top: 60px;
+      font-family: 'Roboto', sans-serif;
+    }
+    
+    .header {
       background-color: #00bcd4;
       border-color: rgba(0, 0, 0, 0.2);
-      color:white;
-      height : 60px;   
-  }
-  .sub-header {       background-color: #4DD0E1;    }
-  .logo {     margin-top: 10px;    font-size: 24px;    font-weight: bold; }
-  .nav-tabs>li { padding-top: 10; }
-  .nav-tabs> li > a {    border-radius: 0; }
-  .nav-tabs> li.active > a {    color: #00bcd4; }
-  .nav-tabs>li>a:focus, .nav-tabs>li>a:hover { color: #4DD0E1; }
-  .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover { color: #4DD0E1; }
-  .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {  background-color: #4DD0E1;    }
-  .col-md-6 {      padding-right: 5px; 
-     padding-left: 5px;  }
+      color: white;
+      height: 60px;
+    }
     
-.mdl-shadow--2dp {
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12)
-}
+    .sub-header {
+      background-color: #4DD0E1;
+    }
+    
+    .logo {
+      margin-top: 10px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+    
+    .nav-tabs>li {
+      padding-top: 10;
+    }
+    
+    .nav-tabs> li > a {
+      border-radius: 0;
+    }
+    
+    .nav-tabs> li.active > a {
+      color: #00bcd4;
+    }
+    
+    .nav-tabs>li>a:focus,
+    .nav-tabs>li>a:hover {
+      color: #4DD0E1;
+    }
+    
+    .nav-tabs>li.active>a:focus,
+    .nav-tabs>li.active>a:hover {
+      color: #4DD0E1;
+    }
+    
+    .nav-pills>li.active>a,
+    .nav-pills>li.active>a:focus,
+    .nav-pills>li.active>a:hover {
+      background-color: #4DD0E1;
+    }
+    
+    .col-md-6 {
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+    
+    .mdl-shadow--2dp {
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12)
+    }
+    
+    .mdl-shadow--3dp {
+      box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .2), 0 1px 8px 0 rgba(0, 0, 0, .12)
+    }
+    
+    .mdl-shadow--4dp {
+      box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2)
+    }
+    
+    .mdl-shadow--6dp {
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2)
+    }
+    
+    .mdl-shadow--8dp {
+      box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .2)
+    }
+    
+    .mdl-shadow--16dp {
+      box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2)
+    }
+    
+    .dropdown-submenu {
+      position: relative;
+    }
+    
+    .dropdown-submenu>.dropdown-menu {
+      top: 0;
+      left: 100%;
+      margin-top: -6px;
+      margin-left: -1px;
+      -webkit-border-radius: 0 6px 6px 6px;
+      -moz-border-radius: 0 6px 6px;
+      border-radius: 0 6px 6px 6px;
+    }
+    
+    .dropdown-submenu:hover>.dropdown-menu {
+      display: block;
+    }
+    
+    .dropdown-submenu>a:after {
+      display: block;
+      content: " ";
+      float: right;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+      border-width: 5px 0 5px 5px;
+      border-left-color: #ccc;
+      margin-top: 5px;
+      margin-right: -10px;
+    }
+    
+    .dropdown-submenu:hover>a:after {
+      border-left-color: #fff;
+    }
+    
+    .dropdown-submenu.pull-left {
+      float: none;
+    }
+    
+    .dropdown-submenu.pull-left>.dropdown-menu {
+      left: -100%;
+      margin-left: 10px;
+      -webkit-border-radius: 6px 0 6px 6px;
+      -moz-border-radius: 6px 0 6px 6px;
+      border-radius: 6px 0 6px 6px;
+    }
+    
+    .container-fluid {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    
+    .panel-heading h3 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: normal;
+      width: 75%;
+      padding-top: 8px;
+    }
+  </style>
+ 
+</head>
 
-.mdl-shadow--3dp {
-    box-shadow: 0 3px 4px 0 rgba(0,0,0,.14),0 3px 3px -2px rgba(0,0,0,.2),0 1px 8px 0 rgba(0,0,0,.12)
-}
-
-.mdl-shadow--4dp {
-    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2)
-}
-
-.mdl-shadow--6dp {
-    box-shadow: 0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12),0 3px 5px -1px rgba(0,0,0,.2)
-}
-
-.mdl-shadow--8dp {
-    box-shadow: 0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12),0 5px 5px -3px rgba(0,0,0,.2)
-}
-
-.mdl-shadow--16dp {
-    box-shadow: 0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2)
-}
-
-
-
-.dropdown-submenu {
-    position: relative;
-}
-
-.dropdown-submenu>.dropdown-menu {
-    top: 0;
-    left: 100%;
-    margin-top: -6px;
-    margin-left: -1px;
-    -webkit-border-radius: 0 6px 6px 6px;
-    -moz-border-radius: 0 6px 6px;
-    border-radius: 0 6px 6px 6px;
-}
-
-.dropdown-submenu:hover>.dropdown-menu {
-    display: block;
-}
-
-.dropdown-submenu>a:after {
-    display: block;
-    content: " ";
-    float: right;
-    width: 0;
-    height: 0;
-    border-color: transparent;
-    border-style: solid;
-    border-width: 5px 0 5px 5px;
-    border-left-color: #ccc;
-    margin-top: 5px;
-    margin-right: -10px;
-}
-
-.dropdown-submenu:hover>a:after {
-    border-left-color: #fff;
-}
-
-.dropdown-submenu.pull-left {
-    float: none;
-}
-
-.dropdown-submenu.pull-left>.dropdown-menu {
-    left: -100%;
-    margin-left: 10px;
-    -webkit-border-radius: 6px 0 6px 6px;
-    -moz-border-radius: 6px 0 6px 6px;
-    border-radius: 6px 0 6px 6px;
-}
-.container-fluid {
-  padding-left: 5px; 
-  padding-right: 5px; 
-}
-
-.panel-heading h3 {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: normal;
-    width: 75%;
-    padding-top: 8px;
-}
-    </style>
-    <script type="text/javascript">
-      //<![CDATA[
-      $(window).load(function(){
-      var vm = (function () {
-          function tab(data, name, id) {
-              return {
-                  id: id || name.replace(/ +?/g, ''),
-                  name: name,
-                  data: data,
-                  html: '<div class="page-header"><h1  data-bind="text: data">Example page header <small>Subtext for header</small></h1></div>',
-                  close: function () {
-                      alert('close');
-                  }
-              };
-          };
-      
-          var createNewTab = function () {
-              var tl = tabArray().length;
-              var newtab = new tab('amazing tab data: ' + tl, 'Table ' + tl);
-              tabArray.push(newtab);
-              $('#myTabs a[href="#' + newtab.id + '"]').tab('show');
-          }
-          
-          var removeTab = function () {
-              var txt;
-      	     var r = confirm("Press Ok to close the tab!");
-      	     if (r == true) {
-          	     tabArray.remove(this);
-                  $('#myTabs a:first').tab('show') // Select first tab    
-      		    } else {
-         			 txt = "You pressed Cancel!";
-      		  }
-                
-          }
-      
-          // the following data is just  to fill out the tabs,
-          // you would replace with var tabArray = ko.observableArray([]);
-          // once you had everything working
-          var tabArray = ko.observableArray([ new tab('Table', 'Table') ]);
-      
-          return {
-              tabs: tabArray,
-              createNewTab: createNewTab,
-              removeTab: removeTab
-          };
-      })();
-       $('#myTabs a:first').tab('show') // Select first tab  
-      ko.applyBindings(vm);
-      });//]]>
-    </script>
-  </head>
-  
-  <body>
-    <div id="header" class="navbar-default navbar-fixed-top header">
-      <div class="rows">
-        <div class="col-xs-2" style="margin-top: 10px;">
-          <span class="col-md-2 logo">Logo</span>
-        </div>
-        <div class="col-xs-4" style="margin-top: 10px;">
-          <ul class="nav nav-pills">
-            <li role="presentation" data-bind="click: createNewTab" class="active">
-              <a href="#">Home</a>
-            </li>
-            <li role="presentation" data-bind="click: createNewTab" class="active">
-              <a href="#">New Tab</a>
-            </li>
-            <li role="presentation" class="dropdown active">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+<body>
+  <div id="header" class="navbar-default navbar-fixed-top header">
+    <div class="rows">
+      <div class="col-xs-2" style="margin-top: 10px;">
+        <span class="col-md-2 logo">minilabz</span>
+      </div>
+      <div class="col-xs-4" style="margin-top: 10px;">
+        <ul class="nav nav-pills">
+          <li role="presentation" data-bind="click: createNewTab" class="active">
+            <a href="#">Home</a>
+          </li>
+          <li role="presentation" data-bind="click: createNewTab" class="active">
+            <a href="#">New Tab</a>
+          </li>
+          <li role="presentation" class="dropdown active">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           Dropdown <span class="caret"></span>
         </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#" data-bind="click: createNewTab">Action</a>
-                </li>
-                <li>
-                  <a href="#" data-bind="click: createNewTab">Another action</a>
-                </li>
-                <li>
-                  <a href="#" data-bind="click: createNewTab">Something else here</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li>
-                  <a href="#" data-bind="click: createNewTab">Separated link</a>
-                </li>
-              </ul>
-            </li>
-            <li class="active">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu 1 <b class="caret"></b></a>
-              <ul class="dropdown-menu multi-level">
-                <li>
-                  <a href="#">Action</a>
-                </li>
-                <li>
-                  <a href="#">Another action</a>
-                </li>
-                <li>
-                  <a href="#">Something else here</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">Separated link</a>
-                </li>
-                <li class="divider"></li>
-                <li>
-                  <a href="#">One more separated link</a>
-                </li>
-                <li class="dropdown-submenu">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="#">Action</a>
-                    </li>
-                    <li class="dropdown-submenu">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                      <ul class="dropdown-menu">
-                        <li class="dropdown-submenu">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
-                          <ul class="dropdown-menu">
-                            <li>
-                              <a href="#">Action</a>
-                            </li>
-                            <li>
-                              <a href="#">Another action</a>
-                            </li>
-                            <li>
-                              <a href="#">Something else here</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                              <a href="#">Separated link</a>
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                              <a href="#">One more separated link</a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-        <div class="col-xs-6" style="margin-top: 10px;">
-          <ul class="nav nav-pills pull-right">
-            <li role="presentation" class="dropdown active">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          Theme <span class="caret"></span>
-        </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#" data-bind="click: createNewTab">Theme 1</a>
-                </li>
-                <li>
-                  <a href="#" data-bind="click: createNewTab">Theme 2</a>
-                </li>
-                <li>
-                  <a href="#" data-bind="click: createNewTab">Theme 3</a>
-                </li>
-              </ul>
-            </li>
-            <li role="presentation" class="dropdown active">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          ENG <span class="caret"></span>
-        </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="#" data-bind="click: createNewTab">FIN</a>
-                </li>
-                <li>
-                  <a href="#" data-bind="click: createNewTab">DEK</a>
-                </li>
-                <li>
-                  <a href="#" data-bind="click: createNewTab">RUS</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <!-- List all of the tabs, this first tab definition is the home tab you talked about where you would click to open the
-    other stations -->
-    <ul id="myTabs" class="nav nav-tabs secondary sub-header" role="tablist">
-      <li class="">
-        <a href="#home" role="tab" data-toggle="tab" aria-expanded="false">Home</a>
-      </li>
-      <!-- ko template: { name: 'tab-definition-template', foreach: tabs } -->
-      <!-- /ko -->
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <div class="tab-pane" id="home">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="panel mdl-shadow--2dp">
-                <div class="inbox-body">
-                  <div class="mail-option">
-                    <div class="chk-all">
-                      <input type="checkbox" class="mail-checkbox mail-group-checkbox">
-                      <div class="btn-group">
-                        <a data-toggle="dropdown" href="#" class="btn mini all" aria-expanded="false">
-                                         All
-                                        
-                                     </a>
-                      </div>
-                    </div>
-                    <div class="btn-group">
-                      <a data-original-title="Refresh" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips">
-                                     <i class=" fa fa-refresh"></i> Refresh
-                                 </a>
-                    </div>
-                    <div class="btn-group">
-                      <a data-original-title="Add New" data-placement="top" data-toggle="dropdown" href="#" class="btn mini tooltips" data-bind="click: createNewTab">
-                                     <i class="fa fa-plus"></i> Add New
-                                 </a>
-                    </div>
-                    <div class="btn-group hidden-phone">
-                      <a data-toggle="dropdown" href="#" class="btn mini blue" aria-expanded="false">
-                                     Action
-                                     <i class="fa fa-angle-down "></i>
-                                 </a>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                          <a href="#"><i class="fa fa-ban"></i> Approve</a>
-                        </li>
-                        <li>
-                          <a href="#"><i class="fa fa-star"></i> Reject</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                          <a href="#"><i class="fa fa-trash-o"></i> Delete</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="btn-group hide">
-                      <a data-toggle="dropdown" href="#" class="btn mini blue">
-                                     Move to
-                                     <i class="fa fa-angle-down "></i>
-                                 </a>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a href="#"><i class="fa fa-pencil"></i> Mark as Read</a>
-                        </li>
-                        <li>
-                          <a href="#"><i class="fa fa-ban"></i> Spam</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                          <a href="#"><i class="fa fa-trash-o"></i> Delete</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <ul class="unstyled inbox-pagination">
-                      <li>
-                        <span>1-50 of 234</span>
-                      </li>
-                      <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-left  pagination-left"></i></a>
-                      </li>
-                      <li>
-                        <a class="np-btn" href="#"><i class="fa fa-angle-right pagination-right"></i></a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#" data-bind="click: createNewTab">Action</a>
+              </li>
+              <li>
+                <a href="#" data-bind="click: createNewTab">Another action</a>
+              </li>
+              <li>
+                <a href="#" data-bind="click: createNewTab">Something else here</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="#" data-bind="click: createNewTab">Separated link</a>
+              </li>
+            </ul>
+          </li>
+          <li class="active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu 1 <b class="caret"></b></a>
+            <ul class="dropdown-menu multi-level">
+              <li>
+                <a href="#">Action</a>
+              </li>
+              <li>
+                <a href="#">Another action</a>
+              </li>
+              <li>
+                <a href="#">Something else here</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">Separated link</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a href="#">One more separated link</a>
+              </li>
+              <li class="dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="#">Action</a>
+                  </li>
+                  <li class="dropdown-submenu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                    <ul class="dropdown-menu">
+                      <li class="dropdown-submenu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a href="#">Action</a>
+                          </li>
+                          <li>
+                            <a href="#">Another action</a>
+                          </li>
+                          <li>
+                            <a href="#">Something else here</a>
+                          </li>
+                          <li class="divider"></li>
+                          <li>
+                            <a href="#">Separated link</a>
+                          </li>
+                          <li class="divider"></li>
+                          <li>
+                            <a href="#">One more separated link</a>
+                          </li>
+                        </ul>
                       </li>
                     </ul>
-                  </div>
-                  <table class="table table-inbox table-hover">
-                    <tbody>
-                      <tr class="unread">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star"></i>
-                        </td>
-                        <td class="view-message  dont-show">PHPClass</td>
-                        <td class="view-message ">Added a new class: Login Class Fast Site</td>
-                        <td class="view-message  inbox-small-cells">
-                          <i class="fa fa-paperclip"></i>
-                        </td>
-                        <td class="view-message  text-right">9:27 AM</td>
-                      </tr>
-                      <tr class="unread">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star"></i>
-                        </td>
-                        <td class="view-message dont-show">Google Webmaster</td>
-                        <td class="view-message">Improve the search presence of WebSite</td>
-                        <td class="view-message inbox-small-cells"></td>
-                        <td class="view-message text-right">March 15</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star"></i>
-                        </td>
-                        <td class="view-message dont-show">JW Player</td>
-                        <td class="view-message">Last Chance: Upgrade to Pro for</td>
-                        <td class="view-message inbox-small-cells"></td>
-                        <td class="view-message text-right">March 15</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star"></i>
-                        </td>
-                        <td class="view-message dont-show">Tim Reid, S P N</td>
-                        <td class="view-message">Boost Your Website Traffic</td>
-                        <td class="view-message inbox-small-cells"></td>
-                        <td class="view-message text-right">April 01</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star inbox-started"></i>
-                        </td>
-                        <td class="view-message dont-show">Freelancer.com
-                          <span class="label label-danger pull-right">urgent</span>
-                        </td>
-                        <td class="view-message">Stop wasting your visitors</td>
-                        <td class="view-message inbox-small-cells"></td>
-                        <td class="view-message text-right">May 23</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star inbox-started"></i>
-                        </td>
-                        <td class="view-message dont-show">WOW Slider</td>
-                        <td class="view-message">New WOW Slider v7.8 - 67% off</td>
-                        <td class="view-message inbox-small-cells">
-                          <i class="fa fa-paperclip"></i>
-                        </td>
-                        <td class="view-message text-right">March 14</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star inbox-started"></i>
-                        </td>
-                        <td class="view-message dont-show">LinkedIn Pulse</td>
-                        <td class="view-message">The One Sign Your Co-Worker Will Stab</td>
-                        <td class="view-message inbox-small-cells">
-                          <i class="fa fa-paperclip"></i>
-                        </td>
-                        <td class="view-message text-right">Feb 19</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star"></i>
-                        </td>
-                        <td class="view-message dont-show">Drupal Community
-                          <span class="label label-success pull-right">megazine</span>
-                        </td>
-                        <td class="view-message view-message">Welcome to the Drupal Community</td>
-                        <td class="view-message inbox-small-cells"></td>
-                        <td class="view-message text-right">March 04</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star"></i>
-                        </td>
-                        <td class="view-message dont-show">Facebook</td>
-                        <td class="view-message view-message">Somebody requested a new password</td>
-                        <td class="view-message inbox-small-cells"></td>
-                        <td class="view-message text-right">June 13</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star"></i>
-                        </td>
-                        <td class="view-message dont-show">Skype
-                          <span class="label label-info pull-right">family</span>
-                        </td>
-                        <td class="view-message view-message">Password successfully changed</td>
-                        <td class="view-message inbox-small-cells"></td>
-                        <td class="view-message text-right">March 24</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star inbox-started"></i>
-                        </td>
-                        <td class="view-message dont-show">Google+</td>
-                        <td class="view-message">alireza, do you know</td>
-                        <td class="view-message inbox-small-cells"></td>
-                        <td class="view-message text-right">March 09</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star inbox-started"></i>
-                        </td>
-                        <td class="dont-show">Zoosk</td>
-                        <td class="view-message">7 new singles we think you'll like</td>
-                        <td class="view-message inbox-small-cells">
-                          <i class="fa fa-paperclip"></i>
-                        </td>
-                        <td class="view-message text-right">May 14</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star"></i>
-                        </td>
-                        <td class="view-message dont-show">LinkedIn</td>
-                        <td class="view-message">Alireza: Nokia Networks, System Group and</td>
-                        <td class="view-message inbox-small-cells">
-                          <i class="fa fa-paperclip"></i>
-                        </td>
-                        <td class="view-message text-right">February 25</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star"></i>
-                        </td>
-                        <td class="dont-show">Facebook</td>
-                        <td class="view-message view-message">Your account was recently logged into</td>
-                        <td class="view-message inbox-small-cells"></td>
-                        <td class="view-message text-right">March 14</td>
-                      </tr>
-                      <tr class="">
-                        <td class="inbox-small-cells">
-                          <input type="checkbox" class="mail-checkbox">
-                        </td>
-                        <td class="inbox-small-cells">
-                          <i class="fa fa-star"></i>
-                        </td>
-                        <td class="view-message dont-show">Twitter</td>
-                        <td class="view-message">Your Twitter password has been changed</td>
-                        <td class="view-message inbox-small-cells"></td>
-                        <td class="view-message text-right">April 07</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <!-- ko template: { name: 'tab-template', foreach: tabs } -->
-      <!-- /ko -->
+      <div class="col-xs-6" style="margin-top: 10px;">
+        <ul class="nav nav-pills pull-right">
+          <li role="presentation" class="dropdown active">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          Theme <span class="caret"></span>
+        </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#" data-bind="click: createNewTab">Theme 1</a>
+              </li>
+              <li>
+                <a href="#" data-bind="click: createNewTab">Theme 2</a>
+              </li>
+              <li>
+                <a href="#" data-bind="click: createNewTab">Theme 3</a>
+              </li>
+            </ul>
+          </li>
+          <li role="presentation" class="dropdown active">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          ENG <span class="caret"></span>
+        </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#" data-bind="click: createNewTab">FIN</a>
+              </li>
+              <li>
+                <a href="#" data-bind="click: createNewTab">DEK</a>
+              </li>
+              <li>
+                <a href="#" data-bind="click: createNewTab">RUS</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-    <script type="text/html" id="tab-definition-template">
-      <li> <a role = "tab"
-      data-toggle = "tab"
-      data-bind = "attr: {'href': ('#' + id)}"> <span data-bind = "text: name">Title</span>
-         <span id="close" data-bind="click:$parent.removeTab">X</span > </a> 
+  </div>
+  <!-- List all of the tabs, this first tab definition is the home tab you talked about where you would click to open the
+    other stations -->
+  <ul id="myTabs" class="nav nav-tabs secondary sub-header" role="tablist">
+    <li class="">
+      <a href="#home" role="tab" data-toggle="tab" aria-expanded="false">Home</a>
     </li>
-    </script>
-    <script type="text/html" id="tab-template">
-      <div class = "tab-pane"
-      data-bind = "attr: {'id': id}" > 
-      
-            <div class="container-fluid">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="panel panel-default mdl-shadow--2dp">
-                <div class="panel-heading">
-                  <h3 class="panel-title pull-left">Form Title</h3>
-                  
-                  <button class="btn btn-primary pull-right" >Save</button>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="panel-body">
-                  <form class="form-horizontal">
-                    <fieldset>
-                      <!-- Form Name -->
-                      <!-- Text input-->
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="Name">Name</label>
-                        <div class="col-md-4">
-                          <input id="Name" name="Name" type="text" placeholder="User Name" class="form-control input-md" required="">
-                          <span class="help-block">Enter you name</span>
-                        </div>
-                      </div>
-                      <!-- Textarea -->
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="desc">Description</label>
-                        <div class="col-md-4">
-                          <textarea class="form-control" id="desc" name="desc"></textarea>
-                        </div>
-                      </div>
-                      <!-- Select Basic -->
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectbasic">Select Basic</label>
-                        <div class="col-md-4">
-                          <select id="selectbasic" name="selectbasic" class="form-control">
-                            <option value="1">Option one</option>
-                            <option value="2">Option two</option>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- Multiple Radios (inline) -->
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="radios">Inline Radios</label>
-                        <div class="col-md-4">
-                          <label class="radio-inline" for="radios-0">
-                            <input type="radio" name="radios" id="radios-0" value="1" checked="checked">1</label>
-                          <label class="radio-inline" for="radios-1">
-                            <input type="radio" name="radios" id="radios-1" value="2">2</label>
-                          <label class="radio-inline" for="radios-2">
-                            <input type="radio" name="radios" id="radios-2" value="3">3</label>
-                          <label class="radio-inline" for="radios-3">
-                            <input type="radio" name="radios" id="radios-3" value="4">4</label>
-                        </div>
-                      </div>
-                      <!-- Multiple Checkboxes -->
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="checkboxes">Multiple Checkboxes</label>
-                        <div class="col-md-4">
-                          <div class="checkbox">
-                            <label for="checkboxes-0">
-                              <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">Option one</label>
-                          </div>
-                          <div class="checkbox">
-                            <label for="checkboxes-1">
-                              <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">Option two</label>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Select Multiple -->
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="selectmultiple">Select Multiple</label>
-                        <div class="col-md-4">
-                          <select id="selectmultiple" name="selectmultiple" class="form-control" multiple="multiple">
-                            <option value="1">Option one</option>
-                            <option value="2">Option two</option>
-                          </select>
-                        </div>
-                      </div>
-                      <!-- Multiple Radios -->
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="radios">Multiple Radios</label>
-                        <div class="col-md-4">
-                          <div class="radio">
-                            <label for="radios-0">
-                              <input type="radio" name="radios" id="radios-0" value="1" checked="checked">Option one</label>
-                          </div>
-                          <div class="radio">
-                            <label for="radios-1">
-                              <input type="radio" name="radios" id="radios-1" value="2">Option two</label>
-                          </div>
-                        </div>
-                      </div>
-                      <!-- Multiple Checkboxes (inline) -->
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="checkboxes">Inline Checkboxes</label>
-                        <div class="col-md-4">
-                          <label class="checkbox-inline" for="checkboxes-0">
-                            <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">1</label>
-                          <label class="checkbox-inline" for="checkboxes-1">
-                            <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">2</label>
-                          <label class="checkbox-inline" for="checkboxes-2">
-                            <input type="checkbox" name="checkboxes" id="checkboxes-2" value="3">3</label>
-                          <label class="checkbox-inline" for="checkboxes-3">
-                            <input type="checkbox" name="checkboxes" id="checkboxes-3" value="4">4</label>
-                        </div>
-                      </div>
-                      <!-- Button (Double) -->
-                      <div class="form-group">
-                        <label class="col-md-4 control-label" for="button1id">Double Button</label>
-                        <div class="col-md-8">
-                          <button id="button1id" name="button1id" class="btn btn-success">Good Button</button>
-                          <button id="button2id" name="button2id" class="btn btn-danger">Scary Button</button>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-       </div>
-    </script>
-  </body>
+    <!-- ko template: { name: 'tab-definition-template', foreach: tabs } -->
+    <!-- /ko -->
+  </ul>
+  
+</body>
 
 </html>
