@@ -61,15 +61,11 @@ $(function() {
 	var client = MicrosoftGraph.Client.init({
 	authProvider: (done) => {
 		done(null, secretkey ); //first parameter takes an error if you can't get an access token
-	}
+	}});
 
 	// Example calling /me with no parameters
-	client
-	.api('/me')
+	client.api('/me')
 	.get((err, res) => {
 		console.log(res); // prints info about authenticated user
 	});
-});
-
-	
 });
