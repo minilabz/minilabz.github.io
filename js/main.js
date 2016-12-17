@@ -33,7 +33,7 @@ function hasUrlParameter(name) {
 		return false;
 }
 function getUrlParameter(name) {
-	parseHashBangArgs()[name]
+	return parseHashBangArgs()[name];
 };
 
 function parseHashBangArgs(aURL) {
