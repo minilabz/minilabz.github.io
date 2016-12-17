@@ -29,15 +29,27 @@ var expires_in, ext_expires_in, expires_on, not_before = null;
 function hasUrlParameter() {
 	name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
 	var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-	var results = regex.exec(location.search);
+	var results = regex.exec(getparams());
 	return results === null ? false : true;
 }
 function getUrlParameter(name) {
 	name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
 	var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-	var results = regex.exec(location.search);
+	var results = regex.exec(getparams());
 	return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
 };
+
+
+function getparams() {
+	if( location.search !== "" ) {
+		return location.search;
+	}
+	else( location.hash !== "" )
+	{
+		return location.hash.startsWith("#") ? location.hash.slice(1) : location.hash;
+	}
+}
+
 
 getToken = function () {
 	if( access_token !== null ) {
