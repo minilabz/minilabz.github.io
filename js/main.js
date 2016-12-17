@@ -54,6 +54,7 @@ getToken = function () {
 
 // DOM ready.
 $(function() {
+	debugger;
 	var secretkey = getToken();
 
 	console.log( secretkey );
