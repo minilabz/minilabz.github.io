@@ -27,27 +27,33 @@ var id_token = null
 var expires_in, ext_expires_in, expires_on, not_before = null;
 
 function hasUrlParameter() {
-	name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-	var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-	var results = regex.exec(getparams());
-	return results === null ? false : true;
+	if( parseHashBangArgs()[name] !== null || parseHashBangArgs()[name] !== undefined )
+		return true;
+	else
+		return false;
 }
 function getUrlParameter(name) {
-	name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-	var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-	var results = regex.exec(getparams());
-	return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+	parseHashBangArgs()[name]
 };
 
+function parseHashBangArgs(aURL) {
 
-function getparams() {
-	if( location.search !== "" ) {
-		return location.search;
-	}
-	else( location.hash !== "" )
-	{
-		return location.hash.startsWith("#") ? location.hash.slice(1) : location.hash;
-	}
+	aURL = aURL || window.location.href;
+	
+	var vars = {};
+	var hashes = aURL.slice(aURL.indexOf('#') + 1).split('&');
+
+    for(var i = 0; i < hashes.length; i++) {
+       var hash = hashes[i].split('=');
+      
+       if(hash.length > 1) {
+    	   vars[hash[0]] = hash[1];
+       } else {
+     	  vars[hash[0]] = null;
+       }      
+    }
+
+    return vars;
 }
 
 
