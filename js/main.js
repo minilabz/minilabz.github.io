@@ -18,7 +18,7 @@ grant_type=authorization_code
 
 */
 
-var uri = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?response_type=id_token+token&scope=openid%20User.Read%20User.ReadWrite%20User.ReadBasic.All%20Mail.ReadWrite%20Mail.ReadWrite.Shared%20Mail.Send%20Mail.Send.Shared%20Calendars.ReadWrite%20Calendars.ReadWrite.Shared%20Contacts.ReadWrite%20Contacts.ReadWrite.Shared%20MailboxSettings.ReadWrite%20Files.ReadWrite%20Files.ReadWrite.All%20Files.ReadWrite.Selected%20Files.ReadWrite.AppFolder%20Notes.ReadWrite%20Notes.ReadWrite.All%20Notes.ReadWrite.CreatedByApp%20Notes.Create%20Tasks.ReadWrite%20Tasks.ReadWrite.Shared%20Sites.ReadWrite.All&client_id=de8bc8b5-d9f9-48b1-a8ad-b748da725064&redirect_uri=https%3A%2F%2Fgraph.microsoft.io%2Fen-us%2Fgraph-explorer&state=9b53ab04-eadd-4ab8-85d5-4062405c3bc9&client-request-id=9977124a-6323-41fc-a419-c25e77d7e1e7&x-client-SKU=Js&x-client-Ver=2.0.0-experimental&nonce=b041f1ba-0a1e-42b7-807c-9373120780f5"
+var uri = "https://login.microsoftonline.com/common/oauth2/v2.0/authorize?response_type=id_token token&scope=openid User.Read User.ReadWrite User.ReadBasic.All Mail.ReadWrite Mail.ReadWrite.Shared Mail.Send Mail.Send.Shared Calendars.ReadWrite Calendars.ReadWrite.Shared Contacts.ReadWrite Contacts.ReadWrite.Shared MailboxSettings.ReadWrite Files.ReadWrite Files.ReadWrite.All Files.ReadWrite.Selected Files.ReadWrite.AppFolder Notes.ReadWrite Notes.ReadWrite.All Notes.ReadWrite.CreatedByApp Notes.Create Tasks.ReadWrite Tasks.ReadWrite.Shared Sites.ReadWrite.All&client_id=72fa9e82-8591-403c-863a-cce948dfc9e3&redirect_uri=https://minilabz.github.io/index.html&state=9b53ab04-eadd-4ab8-85d5-4062405c3bc9&nonce=b041f1ba-0a1e-42b7-807c-9373120780f5";
 
 var access_token = null;
 var token_type = null;
