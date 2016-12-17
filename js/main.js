@@ -27,7 +27,7 @@ var id_token = null
 var expires_in, ext_expires_in, expires_on, not_before = null;
 
 function hasUrlParameter(name) {
-	if( parseHashBangArgs()[name] !== null && parseHashBangArgs()[name] !== undefined )
+	if (parseHashBangArgs()[name] !== null && parseHashBangArgs()[name] !== undefined)
 		return true;
 	else
 		return false;
@@ -39,30 +39,29 @@ function getUrlParameter(name) {
 function parseHashBangArgs(aURL) {
 
 	aURL = aURL || window.location.href;
-	
+
 	var vars = {};
 	var hashes = aURL.slice(aURL.indexOf('#') + 1).split('&');
 
-    for(var i = 0; i < hashes.length; i++) {
-       var hash = hashes[i].split('=');
-      
-       if(hash.length > 1) {
-    	   vars[hash[0]] = hash[1];
-       } else {
-     	  vars[hash[0]] = null;
-       }      
-    }
+	for (var i = 0; i < hashes.length; i++) {
+		var hash = hashes[i].split('=');
 
-    return vars;
+		if (hash.length > 1) {
+			vars[hash[0]] = hash[1];
+		} else {
+			vars[hash[0]] = null;
+		}
+	}
+
+	return vars;
 }
 
 
 getToken = function () {
-	if( access_token !== null ) {
+	if (access_token !== null) {
 		return access_token;
 	}
-	else if( hasUrlParameter( "access_token") )
-	{
+	else if (hasUrlParameter("access_token")) {
 		access_token = getUrlParameter("access_token");
 		return access_token;
 	}
@@ -71,20 +70,37 @@ getToken = function () {
 }
 
 // DOM ready.
-$(function() {
+$(function () {
 	debugger;
 	var secretkey = getToken();
 
-	console.log( secretkey );
+	console.log(secretkey);
 
 	var client = MicrosoftGraph.Client.init({
-	authProvider: (done) => {
-		done(null, secretkey ); //first parameter takes an error if you can't get an access token
-	}});
+		authProvider: (done) => {
+			done(null, secretkey); //first parameter takes an error if you can't get an access token
+		}
+	});
 
 	// Example calling /me with no parameters
 	client.api('/me')
-	.get((err, res) => {
-		console.log(res); // prints info about authenticated user
-	});
+		.get((err, res) => {
+			console.log(res); // prints info about authenticated user
+		});
+
+
+	let iter = client
+		.api('/me/messages')
+		.getResultIterator();
+
+	// Example function that prints the subject of your messages
+	function getNextMessage() {
+		iter.next().value((err, res) => {
+			console.log(res.subject);
+			getNextMessage();
+		})
+	}
+
+	getNextMessage();
+
 });
