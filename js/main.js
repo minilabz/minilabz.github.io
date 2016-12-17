@@ -26,7 +26,7 @@ var refresh_token = null;
 var id_token = null
 var expires_in, ext_expires_in, expires_on, not_before = null;
 
-function hasUrlParameter() {
+function hasUrlParameter(name) {
 	if( parseHashBangArgs()[name] !== null || parseHashBangArgs()[name] !== undefined )
 		return true;
 	else
