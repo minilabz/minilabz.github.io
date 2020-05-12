@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fast Trade Bot</title>
+  </head>
+
+<body>
+
+
+  <script>
+  window.location.href = "https://pro.upstox.com/trade/?orders=NSE|FO|-|BANKNIFTY20MAYFUT|20|-|buy|co|i|day|m|18209|-|-|-|-|-||NSE|FO|-|INFY20JUNFUT|1200|-|buy|simple|d|day|m|-|-|-|-|-|-";
+
+  </script>
+
+</body>
+
+</html>
