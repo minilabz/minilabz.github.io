@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fast Trade Bot</title>
+  <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+</head>
+
+<body>
+
+  <div id="msg" class="app-main__box__body app-main__box__body--withSearch">
+    <div class="m-b-2x">
+      <div class="flex justify-space-between flex-wrap">
+        <p class="text-uppercase text-bold text-md">EELNIFTY19</p>
+        <p class="text-md">₹ 0</p>
+      </div>
+      <div class="tags">
+        <div class="tags__each">BSE</div>
+        <div class="tags__each">EQ</div>
+      </div>
+    </div>
+    <div class="tab-select">
+      <p class="m-b-1x">Side</p>
+      <div class="tab-select__set tab-select__set--half"><input type="radio" name="sideSelect" value="buy"
+          id="buySide"><label for="buySide" class="tab-select__set__each">Buy</label><input type="radio"
+          name="sideSelect" value="sell" id="sellSide"><label for="sellSide" class="tab-select__set__each">Sell</label>
+      </div>
+    </div>
+    <div class="tab-select">
+      <p class="m-b-1x">Position</p>
+      <div class="tab-select__set tab-select__set--half"><input type="radio" name="positionSelect" value="d"
+          id="dPosition"><label for="dPosition" class="tab-select__set__each">Delivery</label><input type="radio"
+          name="positionSelect" value="i" id="iPosition"><label for="iPosition"
+          class="tab-select__set__each">Intraday</label></div>
+    </div>
+    <div class="tab-select">
+      <p class="m-b-1x">Complexity</p>
+      <div class="tab-select__set"><input type="radio" name="complexitySelect" value="simple"
+          id="simpleComplexity"><label for="simpleComplexity" class="tab-select__set__each">Simple</label><input
+          type="radio" name="complexitySelect" value="amo" id="amoComplexity"><label for="amoComplexity"
+          class="tab-select__set__each">AMO</label><input type="radio" name="complexitySelect" value="co"
+          id="coComplexity"><label for="coComplexity" class="tab-select__set__each">CO</label><input type="radio"
+          name="complexitySelect" value="oco" id="ocoComplexity"><label for="ocoComplexity"
+          class="tab-select__set__each">OCO</label></div>
+    </div>
+    <div class="tab-select">
+      <p class="m-b-1x">Order Type</p>
+      <div class="tab-select__set"><input type="radio" name="orderTypeSelect" value="l" id="lOrderType"><label
+          for="lOrderType" class="tab-select__set__each">Limit</label><input type="radio" name="orderTypeSelect"
+          value="m" id="mOrderType"><label for="mOrderType" class="tab-select__set__each">Market</label><input
+          type="radio" name="orderTypeSelect" value="sl" id="slOrderType"><label for="slOrderType"
+          class="tab-select__set__each">SL Limit</label><input type="radio" name="orderTypeSelect" value="sl-m"
+          id="sl-mOrderType"><label for="sl-mOrderType" class="tab-select__set__each">SL Market</label></div>
+    </div>
+    <div class="m-b-3x">
+      <div class="flex justify-space-between align-items-center"><label>Quantity</label>
+        <div class="counter"><i class="counter__control mdi mdi-minus-circle-outline"></i>
+          <div class="counter__input"><input type="number" step="0" value="1" pattern="\d*">
+            <div class="filler"></div>
+          </div><i class="counter__control mdi mdi-plus-circle-outline"></i>
+        </div>
+      </div>
+      <p class="text-danger text-sm text-right"></p>
+    </div>
+    <div class="m-b-3x">
+      <div class="flex justify-space-between align-items-center"><label>Buy Price</label>
+        <div class="counter"><i class="counter__control mdi mdi-minus-circle-outline"></i>
+          <div class="counter__input"><input type="number" step="any" min="0" value="0.00" placeholder="Add a value">
+            <div class="filler"></div>
+          </div><i class="counter__control mdi mdi-plus-circle-outline"></i>
+        </div>
+      </div>
+      <p class="text-danger text-sm text-right">Price cannot be zero or empty</p>
+    </div>
+    <div class="separator"></div>
+    <div class="flex justify-space-between m-b-3x flex-wrap">
+      <div class="checkbox-select"><input type="checkbox" name="discQuantityCheck" id="discQuantityCheck"
+          value="on"><label for="discQuantityCheck" class="checkbox-select__each">Disc Qty</label></div>
+      <div class="flex justify-flex-end align-items-center">
+        <div class="counter"><i class="counter__control mdi mdi-minus-circle-outline counter__control--disabled"></i>
+          <div class="counter__input"><input type="number" value="1" pattern="\d*" placeholder="Add a value"
+              disabled="">
+            <div class="filler"></div>
+          </div><i class="counter__control mdi mdi-plus-circle-outline counter__control--disabled"></i>
+        </div>
+      </div>
+      <p class="text-danger text-sm text-right flex-grow-0 flex-shrink-1 flex-basis-full"></p>
+    </div>
+    <div class="tab-select">
+      <p class="m-b-1x">TIF</p>
+      <div class="tab-select__set tab-select__set--half"><input type="radio" name="tifSelect" value="day"
+          id="dayTif"><label for="dayTif" class="tab-select__set__each">Day</label><input type="radio" name="tifSelect"
+          value="ioc" id="iocTif"><label for="iocTif" class="tab-select__set__each">IOC</label></div>
+    </div>
+    <div>
+      <p class="text-light m-b-1x text-sm">Your UCC ID (optional)</p>
+      <div class="text-input text-input--half m-b-2x"><input type="number" id="uccInput" pattern="\d*"
+          placeholder="Enter your UCC ID" value="">
+        <p class="text-danger text-sm m-b-1x"></p>
+      </div>
+      <p class="text-light text-sm">Note: You will get the benefits only after someone opens an account. Once they open
+        an account, your UCC will be added automatically in the referrer section.</p>
+    </div>
+  </div>
+  <button id="send" type="submit" class="btn btn--block btn--fullWidth">Generate Link</button>
+  <script>
+    let url = 'https://api.telegram.org/bot1071828300:AAHyJaaX-J56lV3KSSYvcqEc2RhFbuoxqR4/sendPhoto?chat_id=-1001256116935';
+
+    let inline = {
+      "inline_keyboard": [
+        [
+          { "text": "upstox", "url": "https://minilabz.github.io/Upstox.html" },
+          { "text": "zerodha", "url": "https://www.minilabz.com/Zerodha.html" },
+          { "text": "dailygong", "url": "https://www.minilabz.com/dailygong.html" }
+
+        ]
+      ]
+
+    };
+
+
+    function dataURItoFile(dataURI) {
+      // convert base64 to raw binary data held in a string
+      // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+      var byteString = atob(dataURI.split(',')[1]);
+
+      // separate out the mime component
+      var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+      // write the bytes of the string to an ArrayBuffer
+      var ab = new ArrayBuffer(byteString.length);
+      var ia = new Uint8Array(ab);
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
+
+      //New Code
+      return new Blob([ab], { type: mimeString });
+    }
+
+    function sendData(url, dataURI) {
+      const formData = new FormData();
+
+      formData.append("chat_id", "-1001256116935");
+      formData.append("caption", "upstox : https://minilabz.github.io/Upstox.html \nzerodha : https://www.minilabz.com/Zerodha.html\ndailygong : https://www.minilabz.com/dailygong.html");
+      formData.append("photo", dataURItoFile(dataURI));
+      formData.append("reply_markup", JSON.stringify(inline));
+
+
+      const response = fetch(url, {
+        method: 'POST',
+        body: formData
+      });
+      response.then(alert('Done'));
+
+    }
+
+    var $msg = document.getElementById("msg");
+    var $send = document.getElementById("send");
+
+    $send.onclick = function () {
+      html2canvas($msg).then(canvas => {
+        let screenshot = canvas.toDataURL();
+        sendData(url, screenshot);
+      });
+    }
+  </script>
+
+</body>
+
+</html>
