@@ -7,108 +7,215 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fast Trade Bot</title>
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://upstox.com/tools-and-calculators/order-link-generator/static/css/main.d82c5935.css"
+    rel="stylesheet">
+  <link href="https://pro.upstox.com/trade/styles.css" rel="stylesheet">
 
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 </head>
 
 <body>
+  <!-- <div class="w-full items-center">
+    <div id="msg" class="w-2/5 py-2 overflow-scroll p-2">
+      <div class="m-b-2x">
+        <div class="flex justify-space-between flex-wrap">
+          <p class="text-uppercase text-bold text-md">EELNIFTY19</p>
+          <div class="tab-select__set tab-select__set--half">
+            <input type="radio" name="sideSelect" value="buy" id="buySide"><label for="buySide"
+              class="tab-select__set__each">Buy</label><input type="radio" name="sideSelect" value="sell"
+              id="sellSide"><label for="sellSide" class="tab-select__set__each">Sell</label>
+          </div>
+        </div>
+        <div class="flex flex-row">
+          <div class="mr-4">BSE</div>
+          <div class="tags__each">EQ</div>
+        </div>
+      </div>
+      <div class="tab-select flex flex-row">
 
-  <div id="msg" class="app-main__box__body app-main__box__body--withSearch">
-    <div class="m-b-2x">
-      <div class="flex justify-space-between flex-wrap">
-        <p class="text-uppercase text-bold text-md">EELNIFTY19</p>
-        <p class="text-md">₹ 0</p>
-      </div>
-      <div class="tags">
-        <div class="tags__each">BSE</div>
-        <div class="tags__each">EQ</div>
-      </div>
-    </div>
-    <div class="tab-select">
-      <p class="m-b-1x">Side</p>
-      <div class="tab-select__set tab-select__set--half"><input type="radio" name="sideSelect" value="buy"
-          id="buySide"><label for="buySide" class="tab-select__set__each">Buy</label><input type="radio"
-          name="sideSelect" value="sell" id="sellSide"><label for="sellSide" class="tab-select__set__each">Sell</label>
-      </div>
-    </div>
-    <div class="tab-select">
-      <p class="m-b-1x">Position</p>
-      <div class="tab-select__set tab-select__set--half"><input type="radio" name="positionSelect" value="d"
-          id="dPosition"><label for="dPosition" class="tab-select__set__each">Delivery</label><input type="radio"
-          name="positionSelect" value="i" id="iPosition"><label for="iPosition"
-          class="tab-select__set__each">Intraday</label></div>
-    </div>
-    <div class="tab-select">
-      <p class="m-b-1x">Complexity</p>
-      <div class="tab-select__set"><input type="radio" name="complexitySelect" value="simple"
-          id="simpleComplexity"><label for="simpleComplexity" class="tab-select__set__each">Simple</label><input
-          type="radio" name="complexitySelect" value="amo" id="amoComplexity"><label for="amoComplexity"
-          class="tab-select__set__each">AMO</label><input type="radio" name="complexitySelect" value="co"
-          id="coComplexity"><label for="coComplexity" class="tab-select__set__each">CO</label><input type="radio"
-          name="complexitySelect" value="oco" id="ocoComplexity"><label for="ocoComplexity"
-          class="tab-select__set__each">OCO</label></div>
-    </div>
-    <div class="tab-select">
-      <p class="m-b-1x">Order Type</p>
-      <div class="tab-select__set"><input type="radio" name="orderTypeSelect" value="l" id="lOrderType"><label
-          for="lOrderType" class="tab-select__set__each">Limit</label><input type="radio" name="orderTypeSelect"
-          value="m" id="mOrderType"><label for="mOrderType" class="tab-select__set__each">Market</label><input
-          type="radio" name="orderTypeSelect" value="sl" id="slOrderType"><label for="slOrderType"
-          class="tab-select__set__each">SL Limit</label><input type="radio" name="orderTypeSelect" value="sl-m"
-          id="sl-mOrderType"><label for="sl-mOrderType" class="tab-select__set__each">SL Market</label></div>
-    </div>
-    <div class="m-b-3x">
-      <div class="flex justify-space-between align-items-center"><label>Quantity</label>
-        <div class="counter"><i class="counter__control mdi mdi-minus-circle-outline"></i>
-          <div class="counter__input"><input type="number" step="0" value="1" pattern="\d*">
-            <div class="filler"></div>
-          </div><i class="counter__control mdi mdi-plus-circle-outline"></i>
+        <div class="w-2/5 py-2">
+          <p class="m-b-1x">Side</p>
+          <div class="tab-select__set tab-select__set--half">
+            <input type="radio" name="sideSelect" value="buy" id="buySide"><label for="buySide"
+              class="tab-select__set__each">Buy</label><input type="radio" name="sideSelect" value="sell"
+              id="sellSide"><label for="sellSide" class="tab-select__set__each">Sell</label>
+          </div>
+        </div>
+
+        <div class="w-3/5">
+          <p class="m-b-1x">Position</p>
+          <div class="tab-select__set tab-select__set--half"><input type="radio" name="positionSelect" value="d"
+              id="dPosition"><label for="dPosition" class="tab-select__set__each">Delivery</label><input type="radio"
+              name="positionSelect" value="i" id="iPosition"><label for="iPosition"
+              class="tab-select__set__each">Intraday</label></div>
         </div>
       </div>
-      <p class="text-danger text-sm text-right"></p>
+      <div class="tab-select">
+        <p class="m-b-1x">Complexity</p>
+        <div class="tab-select__set"><input type="radio" name="complexitySelect" value="simple"
+            id="simpleComplexity"><label for="simpleComplexity" class="tab-select__set__each">Simple</label><input
+            type="radio" name="complexitySelect" value="amo" id="amoComplexity"><label for="amoComplexity"
+            class="tab-select__set__each">AMO</label><input type="radio" name="complexitySelect" value="co"
+            id="coComplexity"><label for="coComplexity" class="tab-select__set__each">CO</label><input type="radio"
+            name="complexitySelect" value="oco" id="ocoComplexity"><label for="ocoComplexity"
+            class="tab-select__set__each">OCO</label></div>
+      </div>
+      <div class="tab-select">
+        <p class="m-b-1x">Order Type</p>
+        <div class="tab-select__set"><input type="radio" name="orderTypeSelect" value="l" id="lOrderType"><label
+            for="lOrderType" class="tab-select__set__each">Limit</label><input type="radio" name="orderTypeSelect"
+            value="m" id="mOrderType"><label for="mOrderType" class="tab-select__set__each">Market</label><input
+            type="radio" name="orderTypeSelect" value="sl" id="slOrderType"><label for="slOrderType"
+            class="tab-select__set__each">SL Limit</label><input type="radio" name="orderTypeSelect" value="sl-m"
+            id="sl-mOrderType"><label for="sl-mOrderType" class="tab-select__set__each">SL Market</label></div>
+      </div>
+      <div class="m-b-3x flex flex-row">
+        <div class="w-2/4">
+          <div class="flex justify-space-between align-items-center"><label>Quantity</label>
+            <div class="counter">
+              <div class="counter__input"><input type="number" step="0" value="1" pattern="\d*">
+                <div class="filler"></div>
+              </div>
+            </div>
+          </div>
+          <p class="text-danger text-sm text-right"></p>
+        </div>
+        <div class="w-2/4">
+          <div class="flex justify-space-between align-items-center">
+            <label>Buy Price</label>
+            <div class="counter">
+              <div class="counter__input"><input type="number" step="any" min="0" value="0.00"
+                  placeholder="Add a value">
+                <div class="filler"></div>
+              </div>
+            </div>
+          </div>
+          <p class="text-danger text-sm text-right">Price cannot be zero or empty</p>
+        </div>
+
+      </div>
+      <div class="separator"></div>
+      <div class="flex justify-space-between m-b-3x flex-wrap">
+        <div class="checkbox-select">
+          <input type="checkbox" name="discQuantityCheck" id="discQuantityCheck" value="on">
+          <label for="discQuantityCheck" class="checkbox-select__each">Disc Qty</label>
+        </div>
+        <div class="flex justify-flex-end align-items-center">
+          <div class="counter">
+            <div class="counter__input"><input type="number" value="1" pattern="\d*" placeholder="Add a value">
+              <div class="filler"></div>
+            </div>
+          </div>
+        </div>
+        <p class="text-danger text-sm text-right flex-grow-0 flex-shrink-1 flex-basis-full"></p>
+      </div>
+      <div class="tab-select">
+        <p class="m-b-1x">TIF</p>
+        <div class="tab-select__set tab-select__set--half"><input type="radio" name="tifSelect" value="day"
+            id="dayTif"><label for="dayTif" class="tab-select__set__each">Day</label><input type="radio"
+            name="tifSelect" value="ioc" id="iocTif"><label for="iocTif" class="tab-select__set__each">IOC</label></div>
+      </div>
     </div>
-    <div class="m-b-3x">
-      <div class="flex justify-space-between align-items-center"><label>Buy Price</label>
-        <div class="counter"><i class="counter__control mdi mdi-minus-circle-outline"></i>
-          <div class="counter__input"><input type="number" step="any" min="0" value="0.00" placeholder="Add a value">
-            <div class="filler"></div>
-          </div><i class="counter__control mdi mdi-plus-circle-outline"></i>
+    <div class="w-2/5 py-2 overflow-scroll p-2">
+      <button id="send" type="submit" class="btn btn--block btn--fullWidth">Send</button>
+    </div>
+  </div> -->
+
+  <div class="w-full">
+    <div class="m-auto w-1/3 h-auto">
+      <div class="flex flex-col" id="msg">
+        <div class="oe-header">
+          <div class="oe-symbolspace">
+            <span class="symbol ">BANKNIFTY</span>
+            <span class="ltp  ng-isolate-scope">19618.55</span>
+          </div>
+          <div class="tags">
+            <span>NFO</span>
+            <span>28 MAY
+              2020</span>
+            <span>FUT</span>
+          </div>
+        </div>
+        <div class="flex flex-row flex-wrap justify-between w-full">
+          <div class="w-2/5 py-2">
+            <div class="label">Complexity</div>
+            <div class="oe-dropdown-bt">CO<span>
+                <img crossorigin="anonymous" src="images/dropdown.svg" ></span>
+            </div>
+            <div class="oe-dropdown hidden">
+              <div class="oe-dropdown-item">Simple</div>
+              <div class="oe-dropdown-item">AMO</div>
+              <div class="oe-dropdown-item">CO</div>
+              <div class="oe-dropdown-item">OCO</div>
+            </div>
+          </div>
+          <div class="w-2/5 py-2">
+            <div class="label">Order Type</div>
+            <div class="oe-dropdown-bt">Market
+              <span>
+                <img crossorigin="anonymous" src="images/dropdown.svg" >
+              </span>
+            </div>
+            <div class="oe-dropdown hidden">
+              <div class="oe-dropdown-item">Market</div>
+              <div class="oe-dropdown-item">Limit</div>
+              <div class="oe-dropdown-item">SL Limit</div>
+              <div class="oe-dropdown-item">SL Mkt</div>
+            </div>
+          </div>
+          <div class="w-2/5 py-2">
+            <div class="label">Product</div>
+            <div class="oe-dropdown-bt ">Intraday<span class="ng-hide">
+                <img crossorigin="anonymous" src="images/dropdown.svg" ></span></div>
+            <div class="oe-dropdown hidden">
+              <div class="oe-dropdown-item">Delivery</div>
+              <div class="oe-dropdown-item  ">Intraday</div>
+            </div>
+          </div>
+          <div class="w-2/5 py-2">
+            <div class="label">Tif</div>
+            <div class="oe-dropdown-bt ">Day<span>
+                <img crossorigin="anonymous" src="images/dropdown.svg" >
+              </span></div>
+            <div class="oe-dropdown hidden">
+              <div class="oe-dropdown-item">Day</div>
+              <div class="oe-dropdown-item">IOC</div>
+            </div>
+          </div>
+          <div class="w-2/5 py-2">
+            <div class="label  input-quantity">Quantity</div>
+            <input type="text" name="quantity" allow-decimal="false"
+              class="px-4 py-2 border border-gray-400 w-full">
+          </div>
+          <div class="w-2/5 py-2">
+            <div class="label  input-price">Price</div>
+            <input type="text" name="price" data-num-input="" allow-decimal="true"
+              class="px-4 py-2 border border-gray-400 w-full">
+          </div>
+          <div class="w-2/5 py-2 relative">
+            <div class="label  input-triggerPrice">Stop Loss Sell</div>
+            <input type="text" name="triggerPrice" allow-decimal="true" maxlength="11"
+              class="px-4 py-2 border border-gray-400 w-full ng-valid-maxlength">
+            <div class="text-l text-gray-500 -my-10 mr-1">
+              <div class="text-right">max : 19618.55</div>
+              <div class="text-right">min : 19029.99</div>
+            </div>
+          </div>
+          <div class="w-2/5 py-2">
+            <div class="label  input-disc-quantity">Disclosed Quantity</div>
+            <input type="text" name="discQuantity" data-num-input="" allow-decimal="false"
+              class="px-4 py-2 border border-gray-400 w-full">
+          </div>
         </div>
       </div>
-      <p class="text-danger text-sm text-right">Price cannot be zero or empty</p>
-    </div>
-    <div class="separator"></div>
-    <div class="flex justify-space-between m-b-3x flex-wrap">
-      <div class="checkbox-select"><input type="checkbox" name="discQuantityCheck" id="discQuantityCheck"
-          value="on"><label for="discQuantityCheck" class="checkbox-select__each">Disc Qty</label></div>
-      <div class="flex justify-flex-end align-items-center">
-        <div class="counter"><i class="counter__control mdi mdi-minus-circle-outline counter__control--disabled"></i>
-          <div class="counter__input"><input type="number" value="1" pattern="\d*" placeholder="Add a value"
-              disabled="">
-            <div class="filler"></div>
-          </div><i class="counter__control mdi mdi-plus-circle-outline counter__control--disabled"></i>
-        </div>
+      <div class="flex flex-row items-center justify-center space-x-4">
+        <div class="border border-gray-400 px-4 py-2 cursor-pointer">Cancel</div>
+        <div class="bg-indigo-500 border border-indigo-500 px-4 py-2 text-white cursor-pointer" id="send">Done</div>
       </div>
-      <p class="text-danger text-sm text-right flex-grow-0 flex-shrink-1 flex-basis-full"></p>
-    </div>
-    <div class="tab-select">
-      <p class="m-b-1x">TIF</p>
-      <div class="tab-select__set tab-select__set--half"><input type="radio" name="tifSelect" value="day"
-          id="dayTif"><label for="dayTif" class="tab-select__set__each">Day</label><input type="radio" name="tifSelect"
-          value="ioc" id="iocTif"><label for="iocTif" class="tab-select__set__each">IOC</label></div>
-    </div>
-    <div>
-      <p class="text-light m-b-1x text-sm">Your UCC ID (optional)</p>
-      <div class="text-input text-input--half m-b-2x"><input type="number" id="uccInput" pattern="\d*"
-          placeholder="Enter your UCC ID" value="">
-        <p class="text-danger text-sm m-b-1x"></p>
-      </div>
-      <p class="text-light text-sm">Note: You will get the benefits only after someone opens an account. Once they open
-        an account, your UCC will be added automatically in the referrer section.</p>
     </div>
   </div>
-  <button id="send" type="submit" class="btn btn--block btn--fullWidth">Generate Link</button>
+
   <script>
     let url = 'https://api.telegram.org/bot1071828300:AAHyJaaX-J56lV3KSSYvcqEc2RhFbuoxqR4/sendPhoto?chat_id=-1001256116935';
 
