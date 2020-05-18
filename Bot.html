@@ -30,14 +30,14 @@
 </head>
 
 <body>
-  <table class="table-fixed m-auto" id="msg">
+  <table class="table-fixed m-auto text-black" id="msg">
     <thead>
-      <tr class="text-xl">
+      <tr class="text-xl text-blue-900">
         <th class="w-auto px-2 py-2 text-sm" title="Buy or Sell">
-          <input type="checkbox" id="checkAll" checked />
+          <input type="checkbox" id="checkAll" />
         </th>
 
-        <th class="w-auto px-2 py-2 text-sm" title="Buy or Sell">-</th>
+        <th class="w-auto px-2 py-2 text-sm" title="Buy or Sell">Do</th>
         <th class="w-auto px-4 text-sm" title="Stock Symbol">Symbol</th>
         <th class="w-auto px-4 text-sm" title="Order Type">Order</th>
         <th class="w-auto px-4 text-sm">Qty</th>
@@ -56,7 +56,8 @@
     <tbody id="rows">
       <tr id="row">
         <td class="w-auto px-2 text-sm">
-          <input type="checkbox" name="row" checked class="checkMe" />
+          <input type="checkbox" name="row" 
+           class="checkMe" />
         </td>
         <td>
           <label for="action" class="buysell select-none text-white px-4 py-2 rounded bg-green-400" value="B">Buy
@@ -67,7 +68,7 @@
         </td>
         <td class="text-sm">
           <select
-            class="border-gray-300 rounded-md text-gray-600 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+            class="border-gray-300 rounded-md text-gray-700 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
             <option selected value="M" title="Market">M</option>
             <option value="L" title="Limit" disabled>L</option>
             <option value="SL" title="Stop Loss" disabled>SL</option>
@@ -78,23 +79,23 @@
           <input type="number" min="1" max="999" class="bg-purple-white p-3 w-20" placeholder="100" value="10" />
         </td>
         <td class="text-sm">
-          <input type="number" min="1" max="999" step="0.01" class="bg-purple-white p-3 w-20" placeholder="100.01"
-            value="" />
+          <input type="number" min="0" max="999" step="0.01" class="bg-purple-white p-3 w-20" placeholder="100.01"
+            value="0.00" />
         </td>
         <td class="px-4 text-sm">
           <select
-            class="border-gray-300 rounded-md text-gray-600 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+            class="border-gray-300 rounded-md text-gray-700 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
             <option selected value="D" title="Day">D</option>
             <option value="I" title="IOC" disabled>I</option>
           </select>
         </td>
 
         <td class="px-4 text-sm">
-          <input type="number" min="1" max="999" class="bg-purple-white p-3 w-20" placeholder="100" value="10" />
+          <input type="number" min="1" max="999" class="bg-purple-white p-3 w-20" placeholder="100" value="0" />
         </td>
         <td class="px-4 text-sm">
           <select
-            class="border-gray-300 rounded-md text-gray-600 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+            class="border-gray-300 rounded-md text-gray-700 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
             <option selected value="S" title="Simple">S</option>
             <option value="A" title="AMO" disabled>AMO</option>
             <option value="CO" title="CO" disabled>CO</option>
@@ -117,19 +118,18 @@
           <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
         </td> -->
         <td class="px-4 text-sm">
-          <button type="submit" class="py-2 px-4 rounded-2 border-indigo-500 border-2"
-            onclick="javascript:;">Send</button>
+          <button type="button" class="select-none py-2 px-4 rounded-md text-white bg-indigo-500 border-2">Send</button>
         </td>
       </tr>
     </tbody>
   </table>
   <div class="flex items-center justify-center h-24">
-    <div id="send" class="bg-indigo-800 text-white font-bold rounded-sm border shadow-lg px-5 py-4">
+    <div id="send" class="select-none bg-indigo-800 text-white font-bold rounded-md border shadow-lg px-5 py-2">
       Send
     </div>
   </div>
 
-  <div id="msgTemp" class="m-auto border rounded-md flex flex-col px-4 py-4 space-y-4 text-gray-500 text-2xl hidden"
+  <div id="msgTemp" class="m-auto border rounded-md flex flex-col px-4 py-4 space-y-4 text-gray-700 text-2xl hidden"
     style="width: 800px;height: 800px;">
     <div class="text-2xl px h-16 border text-indigo-900 text-center"> MyBillion Trade Master</div>
   </div>
