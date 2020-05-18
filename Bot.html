@@ -7,234 +7,149 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fast Trade Bot</title>
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://upstox.com/tools-and-calculators/order-link-generator/static/css/main.d82c5935.css"
-    rel="stylesheet">
-  <link href="https://pro.upstox.com/trade/styles.css" rel="stylesheet">
-
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script>
+    function lastThrusday(year, month) {
+      var lastDay = new Date(year, month, 0);
+      if (lastDay.getDay() < 4) {
+        lastDay.setDate(lastDay.getDate() - 7);
+      }
+      lastDay.setDate(lastDay.getDate() - (lastDay.getDay() - 4));
+      return lastDay;
+    }
 
+    function firstThrusday(year, month) {
+      var firstDay = new Date(year, month - 1, 1);
+      if (firstDay.getDay() > 4) {
+        firstDay.setDate(firstDay.getDate() + 7);
+      }
+      firstDay.setDate(firstDay.getDate() - (firstDay.getDay() - 4));
+      return firstDay;
+    }
+  </script>
 </head>
 
 <body>
-  <!-- <div class="w-full items-center">
-    <div id="msg" class="w-2/5 py-2 overflow-scroll p-2">
-      <div class="m-b-2x">
-        <div class="flex justify-space-between flex-wrap">
-          <p class="text-uppercase text-bold text-md">EELNIFTY19</p>
-          <div class="tab-select__set tab-select__set--half">
-            <input type="radio" name="sideSelect" value="buy" id="buySide"><label for="buySide"
-              class="tab-select__set__each">Buy</label><input type="radio" name="sideSelect" value="sell"
-              id="sellSide"><label for="sellSide" class="tab-select__set__each">Sell</label>
-          </div>
-        </div>
-        <div class="flex flex-row">
-          <div class="mr-4">BSE</div>
-          <div class="tags__each">EQ</div>
-        </div>
-      </div>
-      <div class="tab-select flex flex-row">
+  <table class="table-fixed m-auto" id="msg">
+    <thead>
+      <tr class="text-xl">
+        <th class="w-auto px-2 py-2 text-sm" title="Buy or Sell">
+          <input type="checkbox" id="checkAll" checked />
+        </th>
 
-        <div class="w-2/5 py-2">
-          <p class="m-b-1x">Side</p>
-          <div class="tab-select__set tab-select__set--half">
-            <input type="radio" name="sideSelect" value="buy" id="buySide"><label for="buySide"
-              class="tab-select__set__each">Buy</label><input type="radio" name="sideSelect" value="sell"
-              id="sellSide"><label for="sellSide" class="tab-select__set__each">Sell</label>
-          </div>
-        </div>
+        <th class="w-auto px-2 py-2 text-sm" title="Buy or Sell">-</th>
+        <th class="w-auto px-4 text-sm" title="Stock Symbol">Symbol</th>
+        <th class="w-auto px-4 text-sm" title="Order Type">Order</th>
+        <th class="w-auto px-4 text-sm">Qty</th>
+        <th class="w-auto px-4 text-sm">Price</th>
+        <th class="w-auto px-4 text-sm" title="Tif / Validity">Tif</th>
+        <th class="w-auto px-4 text-sm" title="DISCLOSED QTY">Dis.Qty</th>
+        <th class="w-auto px-4 text-sm" title="Complexity / Variety">Variety</th>
+        <!-- <th class="w-auto px-4 text-sm" title="Position / Product">Position</th>
+        <th class="w-auto px-4 text-sm" title="Trigger Price">Trigger</th>
+        <th class="w-auto px-4 text-sm" title="Target BUY / SELL">Target</th>
+        <th class="w-auto px-4 text-sm" title="Stop Loss - BUY / SELL">SL</th>
+        <th class="w-auto px-4 text-sm" title="Trailing Stop Loss">Tri.SL</th> -->
+        <th class="w-auto px-4 text-sm"> Send </th>
+      </tr>
+    </thead>
+    <tbody id="rows">
+      <tr id="row">
+        <td class="w-auto px-2 text-sm">
+          <input type="checkbox" name="row" checked class="checkMe" />
+        </td>
+        <td>
+          <label for="action" class="buysell select-none text-white px-4 py-2 rounded bg-green-400" value="B">Buy
+          </label>
+        </td>
+        <td class="text-sm">
+          <input type="search" class="bg-purple-white  p-2" placeholder="Search by Symbol..." />
+        </td>
+        <td class="text-sm">
+          <select
+            class="border-gray-300 rounded-md text-gray-600 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+            <option selected value="M" title="Market">M</option>
+            <option value="L" title="Limit" disabled>L</option>
+            <option value="SL" title="Stop Loss" disabled>SL</option>
+            <option value="SLM" title="Stop Loss - Limit" disabled>SL-L</option>
+          </select>
+        </td>
+        <td class="text-sm">
+          <input type="number" min="1" max="999" class="bg-purple-white p-3 w-20" placeholder="100" value="10" />
+        </td>
+        <td class="text-sm">
+          <input type="number" min="1" max="999" step="0.01" class="bg-purple-white p-3 w-20" placeholder="100.01"
+            value="" />
+        </td>
+        <td class="px-4 text-sm">
+          <select
+            class="border-gray-300 rounded-md text-gray-600 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+            <option selected value="D" title="Day">D</option>
+            <option value="I" title="IOC" disabled>I</option>
+          </select>
+        </td>
 
-        <div class="w-3/5">
-          <p class="m-b-1x">Position</p>
-          <div class="tab-select__set tab-select__set--half"><input type="radio" name="positionSelect" value="d"
-              id="dPosition"><label for="dPosition" class="tab-select__set__each">Delivery</label><input type="radio"
-              name="positionSelect" value="i" id="iPosition"><label for="iPosition"
-              class="tab-select__set__each">Intraday</label></div>
-        </div>
-      </div>
-      <div class="tab-select">
-        <p class="m-b-1x">Complexity</p>
-        <div class="tab-select__set"><input type="radio" name="complexitySelect" value="simple"
-            id="simpleComplexity"><label for="simpleComplexity" class="tab-select__set__each">Simple</label><input
-            type="radio" name="complexitySelect" value="amo" id="amoComplexity"><label for="amoComplexity"
-            class="tab-select__set__each">AMO</label><input type="radio" name="complexitySelect" value="co"
-            id="coComplexity"><label for="coComplexity" class="tab-select__set__each">CO</label><input type="radio"
-            name="complexitySelect" value="oco" id="ocoComplexity"><label for="ocoComplexity"
-            class="tab-select__set__each">OCO</label></div>
-      </div>
-      <div class="tab-select">
-        <p class="m-b-1x">Order Type</p>
-        <div class="tab-select__set"><input type="radio" name="orderTypeSelect" value="l" id="lOrderType"><label
-            for="lOrderType" class="tab-select__set__each">Limit</label><input type="radio" name="orderTypeSelect"
-            value="m" id="mOrderType"><label for="mOrderType" class="tab-select__set__each">Market</label><input
-            type="radio" name="orderTypeSelect" value="sl" id="slOrderType"><label for="slOrderType"
-            class="tab-select__set__each">SL Limit</label><input type="radio" name="orderTypeSelect" value="sl-m"
-            id="sl-mOrderType"><label for="sl-mOrderType" class="tab-select__set__each">SL Market</label></div>
-      </div>
-      <div class="m-b-3x flex flex-row">
-        <div class="w-2/4">
-          <div class="flex justify-space-between align-items-center"><label>Quantity</label>
-            <div class="counter">
-              <div class="counter__input"><input type="number" step="0" value="1" pattern="\d*">
-                <div class="filler"></div>
-              </div>
-            </div>
-          </div>
-          <p class="text-danger text-sm text-right"></p>
-        </div>
-        <div class="w-2/4">
-          <div class="flex justify-space-between align-items-center">
-            <label>Buy Price</label>
-            <div class="counter">
-              <div class="counter__input"><input type="number" step="any" min="0" value="0.00"
-                  placeholder="Add a value">
-                <div class="filler"></div>
-              </div>
-            </div>
-          </div>
-          <p class="text-danger text-sm text-right">Price cannot be zero or empty</p>
-        </div>
-
-      </div>
-      <div class="separator"></div>
-      <div class="flex justify-space-between m-b-3x flex-wrap">
-        <div class="checkbox-select">
-          <input type="checkbox" name="discQuantityCheck" id="discQuantityCheck" value="on">
-          <label for="discQuantityCheck" class="checkbox-select__each">Disc Qty</label>
-        </div>
-        <div class="flex justify-flex-end align-items-center">
-          <div class="counter">
-            <div class="counter__input"><input type="number" value="1" pattern="\d*" placeholder="Add a value">
-              <div class="filler"></div>
-            </div>
-          </div>
-        </div>
-        <p class="text-danger text-sm text-right flex-grow-0 flex-shrink-1 flex-basis-full"></p>
-      </div>
-      <div class="tab-select">
-        <p class="m-b-1x">TIF</p>
-        <div class="tab-select__set tab-select__set--half"><input type="radio" name="tifSelect" value="day"
-            id="dayTif"><label for="dayTif" class="tab-select__set__each">Day</label><input type="radio"
-            name="tifSelect" value="ioc" id="iocTif"><label for="iocTif" class="tab-select__set__each">IOC</label></div>
-      </div>
-    </div>
-    <div class="w-2/5 py-2 overflow-scroll p-2">
-      <button id="send" type="submit" class="btn btn--block btn--fullWidth">Send</button>
-    </div>
-  </div> -->
-
-  <div class="w-full">
-    <div class="m-auto w-1/3 h-auto">
-      <div class="flex flex-col" id="msg">
-        <div class="oe-header">
-          <div class="oe-symbolspace">
-            <span class="symbol ">BANKNIFTY</span>
-            <span class="ltp  ng-isolate-scope">19618.55</span>
-          </div>
-          <div class="tags">
-            <span>NFO</span>
-            <span>28 MAY
-              2020</span>
-            <span>FUT</span>
-          </div>
-        </div>
-        <div class="flex flex-row flex-wrap justify-between w-full">
-          <div class="w-2/5 py-2">
-            <div class="label">Complexity</div>
-            <div class="oe-dropdown-bt">CO<span>
-                <img crossorigin="anonymous" src="images/dropdown.svg" ></span>
-            </div>
-            <div class="oe-dropdown hidden">
-              <div class="oe-dropdown-item">Simple</div>
-              <div class="oe-dropdown-item">AMO</div>
-              <div class="oe-dropdown-item">CO</div>
-              <div class="oe-dropdown-item">OCO</div>
-            </div>
-          </div>
-          <div class="w-2/5 py-2">
-            <div class="label">Order Type</div>
-            <div class="oe-dropdown-bt">Market
-              <span>
-                <img crossorigin="anonymous" src="images/dropdown.svg" >
-              </span>
-            </div>
-            <div class="oe-dropdown hidden">
-              <div class="oe-dropdown-item">Market</div>
-              <div class="oe-dropdown-item">Limit</div>
-              <div class="oe-dropdown-item">SL Limit</div>
-              <div class="oe-dropdown-item">SL Mkt</div>
-            </div>
-          </div>
-          <div class="w-2/5 py-2">
-            <div class="label">Product</div>
-            <div class="oe-dropdown-bt ">Intraday<span class="ng-hide">
-                <img crossorigin="anonymous" src="images/dropdown.svg" ></span></div>
-            <div class="oe-dropdown hidden">
-              <div class="oe-dropdown-item">Delivery</div>
-              <div class="oe-dropdown-item  ">Intraday</div>
-            </div>
-          </div>
-          <div class="w-2/5 py-2">
-            <div class="label">Tif</div>
-            <div class="oe-dropdown-bt ">Day<span>
-                <img crossorigin="anonymous" src="images/dropdown.svg" >
-              </span></div>
-            <div class="oe-dropdown hidden">
-              <div class="oe-dropdown-item">Day</div>
-              <div class="oe-dropdown-item">IOC</div>
-            </div>
-          </div>
-          <div class="w-2/5 py-2">
-            <div class="label  input-quantity">Quantity</div>
-            <input type="text" name="quantity" allow-decimal="false"
-              class="px-4 py-2 border border-gray-400 w-full">
-          </div>
-          <div class="w-2/5 py-2">
-            <div class="label  input-price">Price</div>
-            <input type="text" name="price" data-num-input="" allow-decimal="true"
-              class="px-4 py-2 border border-gray-400 w-full">
-          </div>
-          <div class="w-2/5 py-2 relative">
-            <div class="label  input-triggerPrice">Stop Loss Sell</div>
-            <input type="text" name="triggerPrice" allow-decimal="true" maxlength="11"
-              class="px-4 py-2 border border-gray-400 w-full ng-valid-maxlength">
-            <div class="text-l text-gray-500 -my-10 mr-1">
-              <div class="text-right">max : 19618.55</div>
-              <div class="text-right">min : 19029.99</div>
-            </div>
-          </div>
-          <div class="w-2/5 py-2">
-            <div class="label  input-disc-quantity">Disclosed Quantity</div>
-            <input type="text" name="discQuantity" data-num-input="" allow-decimal="false"
-              class="px-4 py-2 border border-gray-400 w-full">
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-row items-center justify-center space-x-4">
-        <div class="border border-gray-400 px-4 py-2 cursor-pointer">Cancel</div>
-        <div class="bg-indigo-500 border border-indigo-500 px-4 py-2 text-white cursor-pointer" id="send">Done</div>
-      </div>
+        <td class="px-4 text-sm">
+          <input type="number" min="1" max="999" class="bg-purple-white p-3 w-20" placeholder="100" value="10" />
+        </td>
+        <td class="px-4 text-sm">
+          <select
+            class="border-gray-300 rounded-md text-gray-600 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+            <option selected value="S" title="Simple">S</option>
+            <option value="A" title="AMO" disabled>AMO</option>
+            <option value="CO" title="CO" disabled>CO</option>
+            <option value="OC" title="OCO / BO" disabled>OCO</option>
+          </select>
+        </td>
+        <!-- <td class="px-4 text-sm">
+          <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
+        </td>
+        <td class="px-4 text-sm">
+          <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
+        </td>
+        <td class="px-4 text-sm">
+          <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
+        </td>
+        <td class="px-4 text-sm">
+          <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
+        </td>
+        <td class="px-4 text-sm">
+          <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
+        </td> -->
+        <td class="px-4 text-sm">
+          <button type="submit" class="py-2 px-4 rounded-2 border-indigo-500 border-2"
+            onclick="javascript:;">Send</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="flex items-center justify-center h-24">
+    <div id="send" class="bg-indigo-800 text-white font-bold rounded-sm border shadow-lg px-5 py-4">
+      Send
     </div>
   </div>
 
+  <div id="msgTemp" class="m-auto border rounded-md flex flex-col px-4 py-4 space-y-4 text-gray-500 text-2xl hidden"
+    style="width: 800px;height: 800px;">
+    <div class="text-2xl px h-16 border text-indigo-900 text-center"> MyBillion Trade Master</div>
+  </div>
   <script>
     let url = 'https://api.telegram.org/bot1071828300:AAHyJaaX-J56lV3KSSYvcqEc2RhFbuoxqR4/sendPhoto?chat_id=-1001256116935';
-
-    let inline = {
-      "inline_keyboard": [
-        [
-          { "text": "upstox", "url": "https://minilabz.github.io/Upstox.html" },
-          { "text": "zerodha", "url": "https://www.minilabz.com/Zerodha.html" },
-          { "text": "dailygong", "url": "https://www.minilabz.com/dailygong.html" }
-
+    let qs = "";
+    let inline = (url) => {
+      return {
+        "inline_keyboard": [
+          [
+            { "text": "upstox", "url": "https://minilabz.github.io/Upstox.html?" + url },
+            { "text": "zerodha", "url": "https://www.minilabz.com/Zerodha.html?" + url },
+            { "text": "dailygong", "url": "https://www.minilabz.com/dailygong.html?" + url }
+          ]
         ]
-      ]
-
-    };
-
+      }
+    }
 
     function dataURItoFile(dataURI) {
-      // convert base64 to raw binary data held in a string
-      // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+
       var byteString = atob(dataURI.split(',')[1]);
 
       // separate out the mime component
@@ -246,39 +161,110 @@
       for (var i = 0; i < byteString.length; i++) {
         ia[i] = byteString.charCodeAt(i);
       }
-
-      //New Code
       return new Blob([ab], { type: mimeString });
     }
 
-    function sendData(url, dataURI) {
+    function sendData(url, dataURI, qs) {
       const formData = new FormData();
-
       formData.append("chat_id", "-1001256116935");
       // formData.append("caption", "upstox : https://minilabz.github.io/Upstox.html \nzerodha : https://www.minilabz.com/Zerodha.html\ndailygong : https://www.minilabz.com/dailygong.html");
       formData.append("photo", dataURItoFile(dataURI));
-      formData.append("reply_markup", JSON.stringify(inline));
-
-
+      formData.append("reply_markup", JSON.stringify(inline(qs)));
       const response = fetch(url, {
         method: 'POST',
         body: formData
       });
       response.then(alert('Done'));
-
     }
 
-    var $msg = document.getElementById("msg");
+    var $msg = document.getElementById("msgTemp");
     var $send = document.getElementById("send");
+    var $checkAll = document.getElementById("checkAll");
+    var $row = document.getElementById("row");
+    var $rows = document.getElementById("rows");
+
+    for (var rowindx = 1; rowindx < 10; rowindx++) {
+      $copy = $row.cloneNode(true);
+      window.$copy = $copy;
+      $action = $copy.getElementsByClassName("buysell")[0];
+      $action.setAttribute("id", "action" + rowindx);
+      $rows.appendChild($copy);
+    }
+
+    var $buysell = document.getElementsByClassName("buysell");
+
+    for (var indx = 0; indx < $buysell.length; indx++) {
+      $buysell[indx].onclick = (e) => {
+        if (e.target.innerText.trim() === "Buy") {
+          e.target.classList.add("bg-red-400");
+          e.target.classList.remove("bg-green-400");
+          e.target.innerText = "Sell"
+
+        } else {
+          e.target.classList.add("bg-green-400");
+          e.target.classList.remove("bg-red-400");
+          e.target.innerText = "Buy"
+        }
+      }
+    }
+
+
+    $checkAll.onclick = function () {
+      var $checkMe = document.getElementsByClassName("checkMe");
+      console.log($checkMe);
+      for (var indx = 0; indx < $checkMe.length; indx++) {
+        $checkMe[indx].checked = checkAll.checked
+      }
+    }
 
     $send.onclick = function () {
+      // if ($msg.childNodes.length > 0) {
+      //   for (var indx = 0; indx < $msg.childNodes.length; indx++) {
+      //     $msg.removeChild($msg.childNodes[indx])
+      //   }
+      // }
+      $msg.innerHTML="";
+
+      qs = [];
+      console.log($rows.children.length);
+      var rows = []
+      for (ridx = 0; ridx < $rows.children.length; ridx++) {
+        var $tr = $rows.children[ridx];
+        var row = [];
+        var qsl = []
+        if (!$tr.children[0].children[0].checked)
+          continue;
+        for (cidx = 1; cidx < $tr.children.length - 1; cidx++) {
+          var $td = $tr.children[cidx];
+          if (cidx == 1) {
+            row.push($td.innerHTML);
+            console.log($td.innerHTML)
+            qsl.push($td.innerText);
+          }
+          else {
+            var value = $td.children[0].value ? $td.children[0].value : "-";
+            row.push(value);
+
+            qsl.push(value);
+          }
+        }
+        console.log(row.join("|"));
+        var tr = document.createElement('div');
+        tr.classList.add("text-2xl")
+        tr.innerHTML = row.join(" | ");
+        $msg.appendChild(tr);
+        qs.push(qsl.join("|"));
+        rows.push(row);
+      }
+      $msg.classList.toggle("hidden");
       html2canvas($msg).then(canvas => {
+        $msg.classList.toggle("hidden");
         let screenshot = canvas.toDataURL();
-        sendData(url, screenshot);
+        sendData(url, screenshot, qs.join("||"));
+
       });
     }
   </script>
-
 </body>
 
 </html>
