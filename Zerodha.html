@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fast Trade Bot</title>
-  </head>
+</head>
 
 <body>
 
@@ -16,38 +16,43 @@
   </form>
 
   <script>
-    document.getElementById("basket").value = `[{
-  "variety": "regular",
-  "tradingsymbol": "INFY",
-  "exchange": "NSE",
-  "transaction_type": "BUY",
-  "order_type": "MARKET",
-  "quantity": 10,
-  "readonly": false
-}, {
-  "variety": "regular",
-  "tradingsymbol": "NIFTY15DECFUT",
-  "exchange": "NFO",
-  "transaction_type": "SELL",
-  "order_type": "LIMIT",
-  "price": 7845,
-  "quantity": 1,
-  "readonly": false
-},
-{
-  "variety": "bo",
-  "tradingsymbol": "RELIANCE",
-  "exchange": "NSE",
-  "transaction_type": "SELL",
-  "order_type": "LIMIT",
-  "product": "MIS",
-  "price": 915.15,
-  "quantity": 1,
-  "stoploss": 5,
-  "squareoff": 7,
-  "trailing_stoploss": 1.5,
-  "readonly": true
-}]`;
+    debugger;
+    let PAYLOAD = (type, symbol, order, quantity, price, validity, dis_qty, variety) => {
+      console.log(symbol, type, order, quantity);
+      order = order == 'M' ? "MARKET" : order;
+      variety = variety == 'S' ? "regular" : variety;
+      validity = validity == 'D' ? "DAY" : "IOC";
+      type = type.toUpperCase();
+
+      return {
+        "variety": variety,
+        "tradingsymbol": decodeURI(symbol),
+        "exchange": "NSE",
+        "transaction_type": type,
+        "order_type": order,
+        "quantity": parseInt(quantity),
+        "readonly": false,
+        "price": parseFloat(price),
+        "disclosed_quantity": parseInt(dis_qty),
+        "validity": validity
+      }
+    };
+    var payloads = [];
+    var qs = location.search.slice(1, location.search.length);
+    var orders = qs.split("||");
+    for (var indx = 0; indx < orders.length; indx++) {
+      var item = orders[indx].split("|");
+      var payload = PAYLOAD(...item);
+      payloads.push(payload)
+    }
+    var _payload = JSON.stringify(payloads);
+    document.getElementById("basket").value = `${_payload}`;
+    console.log(_payload);
+
+    // file:///Users/admin/Git/FastTrade/Zerodha.html?Buy|INFY|M|10|0|D|10|S||Sell|RELIANCE|M|10|0|D|10|S
+
+    // document.getElementById("basket").value = `[{"variety":"regular","tradingsymbol":"INFY","exchange":"NSE","transaction_type":"BUY","order_type":"MARKET","quantity":10,"readonly":false},{"variety":"regular","tradingsymbol":"RELIANCE","exchange":"NSE","transaction_type":"SELL","order_type":"MARKET","quantity":10,"readonly":false}]`;
+
     document.getElementById("basket-form").submit();
   </script>
 
