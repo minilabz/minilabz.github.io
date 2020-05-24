@@ -29,8 +29,11 @@
   </script>
 </head>
 
-<body>
-  <table class="table-fixed m-auto text-black" id="msg">
+<body class="bg-gray-100">
+  <h1 class="text-4xl text-gray-600 m-auto w-full text-center">
+    Fast Trade - Message Board
+  </h1>
+  <table class="table-fixed m-auto text-black" id="orderTable" >
     <thead>
       <tr class="text-xl text-blue-900">
         <th class="w-auto px-2 py-2 text-sm" title="Buy or Sell">
@@ -39,13 +42,16 @@
 
         <th class="w-auto px-2 py-2 text-sm" title="Buy or Sell">Do</th>
         <th class="w-auto px-4 text-sm" title="Stock Symbol">Symbol</th>
+        <th class="w-auto px-4 text-sm" title="Exchange">Exch..</th>
+
         <th class="w-auto px-4 text-sm" title="Order Type">Order</th>
         <th class="w-auto px-4 text-sm">Qty</th>
         <th class="w-auto px-4 text-sm">Price</th>
         <th class="w-auto px-4 text-sm" title="Tif / Validity">Tif</th>
         <th class="w-auto px-4 text-sm" title="DISCLOSED QTY">Dis.Qty</th>
         <th class="w-auto px-4 text-sm" title="Complexity / Variety">Variety</th>
-        <!-- <th class="w-auto px-4 text-sm" title="Position / Product">Position</th>
+        <!-- Phace 2
+        <th class="w-auto px-4 text-sm" title="Position / Product">Position</th>
         <th class="w-auto px-4 text-sm" title="Trigger Price">Trigger</th>
         <th class="w-auto px-4 text-sm" title="Target BUY / SELL">Target</th>
         <th class="w-auto px-4 text-sm" title="Stop Loss - BUY / SELL">SL</th>
@@ -56,69 +62,74 @@
     <tbody id="rows">
       <tr id="row">
         <td class="w-auto px-2 text-sm">
-          <input type="checkbox" name="row" 
-           class="checkMe" />
+          <input type="checkbox" name="row" class="checkMe" />
         </td>
-        <td>
-          <label for="action" class="buysell select-none text-white px-4 py-2 rounded bg-green-400" value="B">Buy
+        <td label="action">
+          <label for="action" class="buysell select-none text-white px-4 py-2 rounded-sm bg-green-400" value="B">Buy
           </label>
         </td>
-        <td class="text-sm">
-          <input type="search" class="bg-purple-white  p-2" placeholder="Search by Symbol..." />
+        <td class="text-sm" label="tradingsymbol">
+          <input type="search" class="p-2 border" placeholder="Search by Symbol..." />
         </td>
-        <td class="text-sm">
-          <select
-            class="border-gray-300 rounded-md text-gray-700 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+        <td class="text-sm relative" label="exchange">
+          <select class="border text-gray-700 h-10 px-2 w-20 bg-white">
+            <option selected value="NSE" title="Market">NSE</option>
+            <option value="BSE" title="BSE">BSE</option>
+            <option value="NFO" title="NFO">NFO</option>
+          </select>
+        </td>
+        <td class="text-sm" label="order_type">
+          <select class="border text-gray-700 h-10 px-2 w-20 bg-white">
             <option selected value="M" title="Market">M</option>
-            <option value="L" title="Limit" disabled>L</option>
+            <option value="L" title="Limit">L</option>
             <option value="SL" title="Stop Loss" disabled>SL</option>
             <option value="SLM" title="Stop Loss - Limit" disabled>SL-L</option>
           </select>
         </td>
-        <td class="text-sm">
-          <input type="number" min="1" max="999" class="bg-purple-white p-3 w-20" placeholder="100" value="10" />
+        <td class="text-sm" label="quantity">
+          <input type="number" min="1" max="999" class="p-2 w-20 border" placeholder="100" value="1" />
         </td>
-        <td class="text-sm">
-          <input type="number" min="0" max="999" step="0.01" class="bg-purple-white p-3 w-20" placeholder="100.01"
+        <td class="text-sm" lavel="price">
+          <input type="number" min="0" max="999" step="0.01" class="p-2 w-20 border" placeholder="100.01"
             value="0.00" />
         </td>
-        <td class="px-4 text-sm">
-          <select
-            class="border-gray-300 rounded-md text-gray-700 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+        <td class="text-sm" label="validity">
+          <select class="text-gray-700 h-10 p-2 w-20 border bg-white">
             <option selected value="D" title="Day">D</option>
             <option value="I" title="IOC" disabled>I</option>
           </select>
         </td>
 
-        <td class="px-4 text-sm">
-          <input type="number" min="1" max="999" class="bg-purple-white p-3 w-20" placeholder="100" value="0" />
+        <td class="text-sm" label="disQty">
+          <input type="number" min="1" max="999" class="p-2 w-20 border" placeholder="100" value="0" />
         </td>
-        <td class="px-4 text-sm">
-          <select
-            class="border-gray-300 rounded-md text-gray-700 h-10 pl-2 pr-2 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+        <td class="text-sm" label="variety">
+          <select class="text-gray-700 h-10 p-2 w-20 bg-white border">
             <option selected value="S" title="Simple">S</option>
             <option value="A" title="AMO" disabled>AMO</option>
             <option value="CO" title="CO" disabled>CO</option>
             <option value="OC" title="OCO / BO" disabled>OCO</option>
           </select>
         </td>
-        <!-- <td class="px-4 text-sm">
-          <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
+
+        <!-- Phace 2
+        <td class="text-sm">
+          <input type="text" class="p-2 w-20 border" placeholder="100" />
         </td>
-        <td class="px-4 text-sm">
-          <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
+        <td class="text-sm">
+          <input type="text" class="p-2 w-20 border" placeholder="100" />
         </td>
-        <td class="px-4 text-sm">
-          <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
+        <td class="text-sm">
+          <input type="text" class="p-2 w-20 border" placeholder="100" />
         </td>
-        <td class="px-4 text-sm">
-          <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
+        <td class="text-sm">
+          <input type="text" class="p-2 w-20 border" placeholder="100" />
         </td>
-        <td class="px-4 text-sm">
-          <input type="text" class="bg-purple-white p-3 w-20 opacity-50 cursor-not-allowed" placeholder="100" />
+        <td class="text-sm">
+          <input type="text" class="p-2 w-20 border" placeholder="100" />
         </td> -->
-        <td class="px-4 text-sm">
-          <button type="button" class="select-none py-2 px-4 rounded-md text-white bg-indigo-500 border-2">Send</button>
+        <td class="text-sm">
+          <button type="button" class="select-none py-2 px-4 mx-4 rounded-sm text-white bg-indigo-500">Send</button>
         </td>
       </tr>
     </tbody>
@@ -129,10 +140,13 @@
     </div>
   </div>
 
-  <div id="msgTemp" class="m-auto border rounded-md flex flex-col px-4 py-4 space-y-4 text-gray-700 text-2xl hidden"
-    style="width: 800px;height: 800px;">
-    <div class="text-2xl px h-16 border text-indigo-900 text-center"> MyBillion Trade Master</div>
+  <div id="CanvasBlock" class="m-auto bg-gray-200" style="width: 800px;height: 800px;">
+    <div class="text-4xl text-gray-800 m-auto w-full text-center"> mybillion.in </div>
+    <div id="orderPlaceholder" class="flex flex-col px-4 py-4 space-y-4 text-gray-700 text-2xl bg-white w-full h-full">
+
+    </div>
   </div>
+  <div class="block mb-20"></div>
   <script>
     let url = 'https://api.telegram.org/bot1071828300:AAHyJaaX-J56lV3KSSYvcqEc2RhFbuoxqR4/sendPhoto?chat_id=-1001256116935';
     let qs = "";
@@ -170,6 +184,7 @@
       // formData.append("caption", "upstox : https://minilabz.github.io/Upstox.html \nzerodha : https://www.minilabz.com/Zerodha.html\ndailygong : https://www.minilabz.com/dailygong.html");
       formData.append("photo", dataURItoFile(dataURI));
       formData.append("reply_markup", JSON.stringify(inline(qs)));
+      console.log(JSON.stringify(inline(qs)));
       const response = fetch(url, {
         method: 'POST',
         body: formData
@@ -177,7 +192,12 @@
       response.then(alert('Done'));
     }
 
-    var $msg = document.getElementById("msgTemp");
+    var $CanvasBlock = document.getElementById("CanvasBlock");
+    var $orderPlaceholder = document.getElementById("orderPlaceholder");
+    var $orderTable = document.getElementById("orderTable");
+
+
+
     var $send = document.getElementById("send");
     var $checkAll = document.getElementById("checkAll");
     var $row = document.getElementById("row");
@@ -218,16 +238,12 @@
     }
 
     $send.onclick = function () {
-      // if ($msg.childNodes.length > 0) {
-      //   for (var indx = 0; indx < $msg.childNodes.length; indx++) {
-      //     $msg.removeChild($msg.childNodes[indx])
-      //   }
-      // }
-      $msg.innerHTML="";
+      $orderPlaceholder.innerHTML = "";
 
       qs = [];
       console.log($rows.children.length);
       var rows = []
+      var ColNames = []
       for (ridx = 0; ridx < $rows.children.length; ridx++) {
         var $tr = $rows.children[ridx];
         var row = [];
@@ -236,6 +252,7 @@
           continue;
         for (cidx = 1; cidx < $tr.children.length - 1; cidx++) {
           var $td = $tr.children[cidx];
+          ColNames.push($td.getAttribute("label"));
           if (cidx == 1) {
             row.push($td.innerHTML);
             console.log($td.innerHTML)
@@ -248,22 +265,43 @@
             qsl.push(value);
           }
         }
-        console.log(row.join("|"));
         var tr = document.createElement('div');
         tr.classList.add("text-2xl")
         tr.innerHTML = row.join(" | ");
-        $msg.appendChild(tr);
+        $orderPlaceholder.appendChild(tr);
         qs.push(qsl.join("|"));
         rows.push(row);
       }
-      $msg.classList.toggle("hidden");
-      html2canvas($msg).then(canvas => {
-        $msg.classList.toggle("hidden");
+
+      // Send Photo. 
+      // $CanvasBlock.classList.toggle("hidden");
+      ToggleExtra();
+      html2canvas($orderTable).then(canvas => {
+        // $CanvasBlock.classList.toggle("hidden");
+        ToggleExtra();
+
         let screenshot = canvas.toDataURL();
         sendData(url, screenshot, qs.join("||"));
 
       });
     }
+
+    function ToggleExtra() {
+      for (ridx = 0; ridx < $rows.children.length; ridx++) {
+        var $tr = $rows.children[ridx];
+        if (!$tr.children[0].children[0].checked) {
+          $tr.classList.toggle("hidden")
+        }
+      }
+
+      document.querySelectorAll("#orderTable td:nth-child(1),th:nth-child(1)").forEach((td) => td.classList.toggle("hidden"))
+
+      document.querySelectorAll("#orderTable td:last-child,th:last-child").forEach((td) => td.classList.toggle("hidden"))
+
+    }
+
+
+
   </script>
 </body>
 

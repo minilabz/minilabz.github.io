@@ -17,9 +17,12 @@
 
   <script>
     debugger;
-    let PAYLOAD = (type, symbol, market, order, quantity, price, validity, dis_qty, variety) => {
+    let PAYLOAD = (type, symbol, exchange, order, quantity, price, validity, dis_qty, variety) => {
       console.log(symbol, type, order, quantity);
       order = order == 'M' ? "MARKET" : order;
+      order = order == 'L' ? "LIMIT" : order;
+      order = order == 'L' ? "LIMIT" : order;
+
       variety = variety == 'S' ? "regular" : variety;
       validity = validity == 'D' ? "DAY" : "IOC";
       type = type.toUpperCase();
@@ -27,7 +30,7 @@
       return {
         "variety": variety,
         "tradingsymbol": decodeURI(symbol),
-        "exchange": market,
+        "exchange": exchange,
         "transaction_type": type,
         "order_type": order,
         "quantity": parseInt(quantity),
