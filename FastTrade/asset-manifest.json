@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/FastTrade/static/css/main.d94cf6d8.chunk.css",
-    "main.js": "/FastTrade/static/js/main.87429a9a.chunk.js",
-    "main.js.map": "/FastTrade/static/js/main.87429a9a.chunk.js.map",
+    "main.js": "/FastTrade/static/js/main.cb3b9a8f.chunk.js",
+    "main.js.map": "/FastTrade/static/js/main.cb3b9a8f.chunk.js.map",
     "runtime-main.js": "/FastTrade/static/js/runtime-main.c79b0374.js",
     "runtime-main.js.map": "/FastTrade/static/js/runtime-main.c79b0374.js.map",
-    "static/js/2.f41f8fd4.chunk.js": "/FastTrade/static/js/2.f41f8fd4.chunk.js",
-    "static/js/2.f41f8fd4.chunk.js.map": "/FastTrade/static/js/2.f41f8fd4.chunk.js.map",
+    "static/js/2.a8219905.chunk.js": "/FastTrade/static/js/2.a8219905.chunk.js",
+    "static/js/2.a8219905.chunk.js.map": "/FastTrade/static/js/2.a8219905.chunk.js.map",
     "index.html": "/FastTrade/index.html",
-    "precache-manifest.540e18e7c664879e27518f108e14bb4d.js": "/FastTrade/precache-manifest.540e18e7c664879e27518f108e14bb4d.js",
+    "precache-manifest.63ba71c2a4b55a49c82d181fee2de1b8.js": "/FastTrade/precache-manifest.63ba71c2a4b55a49c82d181fee2de1b8.js",
     "service-worker.js": "/FastTrade/service-worker.js",
     "static/css/main.d94cf6d8.chunk.css.map": "/FastTrade/static/css/main.d94cf6d8.chunk.css.map",
-    "static/js/2.f41f8fd4.chunk.js.LICENSE.txt": "/FastTrade/static/js/2.f41f8fd4.chunk.js.LICENSE.txt"
+    "static/js/2.a8219905.chunk.js.LICENSE.txt": "/FastTrade/static/js/2.a8219905.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c79b0374.js",
-    "static/js/2.f41f8fd4.chunk.js",
+    "static/js/2.a8219905.chunk.js",
     "static/css/main.d94cf6d8.chunk.css",
-    "static/js/main.87429a9a.chunk.js"
+    "static/js/main.cb3b9a8f.chunk.js"
   ]
 }

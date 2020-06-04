@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/FastTrade/precache-manifest.540e18e7c664879e27518f108e14bb4d.js"
+  "/FastTrade/precache-manifest.63ba71c2a4b55a49c82d181fee2de1b8.js"
 );
 
 self.addEventListener('message', (event) => {
