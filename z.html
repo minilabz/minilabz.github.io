@@ -43,6 +43,7 @@
     var payloads = [];
      var qs = location.search.slice(1, location.search.length);
     var upqs = atob(qs);
+    console.log(upqs);
     var item = upqs.split("|");
     var payload = PAYLOAD(...item);
     payloads.push(payload)
