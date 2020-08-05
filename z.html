@@ -17,7 +17,7 @@
 
   <script>
 
-  let PAYLOAD = (exchange,series,token, symbol,  quantity, price, type,,order,variety,ID,validity ) => {
+  let PAYLOAD = (exchange,series,token, symbol,  quantity, price, type,order,variety,ID,validity ) => {
       console.log(symbol, type, order, quantity);
       order = order == 'M' ? "MARKET" : order;
       order = order == 'L' ? "LIMIT" : order;
