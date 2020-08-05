@@ -27,6 +27,8 @@
       validity = validity == 'D' ? "DAY" : "IOC";
       type = type.toUpperCase();
 
+      exchange = series == "FO" ? "NFO" : exchange;
+
       return {
         "variety": variety,
         "tradingsymbol": decodeURI(symbol),
@@ -36,8 +38,8 @@
         "quantity": parseInt(quantity),
         "readonly": false,
         "price": parseFloat(price),
-        "disclosed_quantity": parseInt(dis_qty),
-        "validity": validity
+        // "disclosed_quantity": parseInt(dis_qty),
+        // "validity": validity
       }
     };
     var payloads = [];
@@ -51,10 +53,10 @@
     var _payload = JSON.stringify(payloads);
     document.getElementById("basket").value = `${_payload}`;
     console.log(_payload);
+    console.log(JSON.stringify( [{"variety":"regular","tradingsymbol":"INFY","exchange":"NSE","transaction_type":"BUY","order_type":"MARKET","quantity":10,"readonly":false}]));
+    // document.getElementById("basket").value = `[{"variety":"regular","tradingsymbol":"INFY","exchange":"NSE","transaction_type":"BUY","order_type":"MARKET","quantity":10,"readonly":false}]`;
 
-    // document.getElementById("basket").value = `[{"variety":"regular","tradingsymbol":"INFY","exchange":"NSE","transaction_type":"BUY","order_type":"MARKET","quantity":10,"readonly":false},{"variety":"regular","tradingsymbol":"RELIANCE","exchange":"NSE","transaction_type":"SELL","order_type":"MARKET","quantity":10,"readonly":false}]`;
-
-    document.getElementById("basket-form").submit();
+   document.getElementById("basket-form").submit();
   </script>
 
 </body>
