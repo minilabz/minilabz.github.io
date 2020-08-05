@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fast Trade Bot</title>
+</head>
+
+<body>
+
+  <form method="post" id="basket-form" action="https://kite.zerodha.com/connect/basket">
+    <input type="hidden" name="api_key" value="f35jttucf2u49ld9" />
+    <input type="hidden" id="basket" name="data" value="" />
+  </form>
+
+  <script>
+
+  let PAYLOAD = (type, symbol, exchange, order, quantity, price, validity, dis_qty, variety) => {
+      console.log(symbol, type, order, quantity);
+      order = order == 'M' ? "MARKET" : order;
+      order = order == 'L' ? "LIMIT" : order;
+      order = order == 'L' ? "LIMIT" : order;
+
+      variety = variety == 'S' ? "regular" : variety;
+      validity = validity == 'D' ? "DAY" : "IOC";
+      type = type.toUpperCase();
+
+      return {
+        "variety": variety,
+        "tradingsymbol": decodeURI(symbol),
+        "exchange": exchange,
+        "transaction_type": type,
+        "order_type": order,
+        "quantity": parseInt(quantity),
+        "readonly": false,
+        "price": parseFloat(price),
+        "disclosed_quantity": parseInt(dis_qty),
+        "validity": validity
+      }
+    };
+    var payloads = [];
+     var qs = location.search.slice(1, location.search.length);
+    var upqs = atob(qs);
+    var item = upqs.split("|");
+    var payload = PAYLOAD(...item);
+    payloads.push(payload)
+   
+    var _payload = JSON.stringify(payloads);
+    document.getElementById("basket").value = `${_payload}`;
+    console.log(_payload);
+
+    // document.getElementById("basket").value = `[{"variety":"regular","tradingsymbol":"INFY","exchange":"NSE","transaction_type":"BUY","order_type":"MARKET","quantity":10,"readonly":false},{"variety":"regular","tradingsymbol":"RELIANCE","exchange":"NSE","transaction_type":"SELL","order_type":"MARKET","quantity":10,"readonly":false}]`;
+
+    document.getElementById("basket-form").submit();
+  </script>
+
+</body>
+
+</html>
