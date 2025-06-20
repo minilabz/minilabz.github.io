@@ -1,297 +1,804 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./imgs/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./imgsfavicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./imgs/favicon-16x16.png">
-    <link rel="manifest" href="./imgs/site.webmanifest">
-
-    <title>Pi Bank : Power Bank that is always Fully Powered. | minilabz</title>
-    <meta name="description"
-        content="Power Yourself Anywhere. Never be powerless. Simply Twist 30-secs & charges up to 50% - 100%" />
-
-    <meta name="keywords" content="compact powerbank with maximum amps,
-        Most selling power bank in kickstarter,
-        Most crowdfunding power bank in Indiegogo,
-        Most crowdfunding power bank in kickstarter,
-        Most funded power bank in Indiegogo,
-        Most funded power bank in kickstarter,
-        best selling powerbank in crowdfunding,
-        Best Power Bank in India,
-        Best Batteries Over 10,000mAh,
-        Power bank,
-        mobile phones,
-        smartphones,
-        smartphone accessories">
-
-    <!-- Schema.org markup for Google+ -->
-    <meta itemprop="name" content="Pi Bank : Power Bank that is always Fully Powered | minilabz">
-    <meta itemprop="description" content="Fully charged in few seconds, Charges any USB gadgets, Eco-Friendly Emergency Charger &
-    100% Renewable.">
-    <meta itemprop="image" content="https://www.minilabz.com/imgs/spec.png">
-
-
-    <!-- Facebook-->
-    <meta property="og:url" content="https://www.minilabz.com">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Pi Bank : Power Bank that is always Fully Powered | minilabz">
-    <meta property="og:description"
-        content="Power Yourself Anywhere. Never be powerless. Simply Twist 30-secs & charges up to 50% - 100%">
-    <meta property="og:image" content="https://www.minilabz.com/imgs/spec.png" />
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@minilabzworld">
-    <meta name="twitter:creator" content="@minilabzworld">
-    <meta name="twitter:title" content="Pi Bank : Power Bank that is always Fully Powered. | minilabz">
-    <meta name="twitter:description"
-        content="Power Yourself Anywhere. Never be powerless. Simply Twist 30-secs & charges up to 50% - 100%">
-    <meta name="twitter:image" content="https://www.minilabz.com/imgs/spec.png">
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i"
-        rel="stylesheet">
-    <link rel="stylesheet" href="./bootstrap.css">
-
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa:300,400,500,600,700&display=swap" rel="stylesheet">
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Minilabz – Engineering the Future of Self-Powered Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        .header-overlay {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0066ff;
+            --secondary-color: #00d4aa;
+            --accent-color: #ff6b35;
+            --dark-bg: #0a0a0a;
+            --light-bg: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666666;
+            --gradient-1: linear-gradient(135deg, #0066ff, #00d4aa);
+            --gradient-2: linear-gradient(135deg, #ff6b35, #ffd23f);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
-            bottom: 0;
             left: 0;
             right: 0;
-            background-color: rgba(0, 0, 0, .6);
+            bottom: 0;
+            background: url('/placeholder.svg?height=800&width=1200') center/cover;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .font-color-white {
-            color: #ffffff !important;
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
         }
 
-        .font-color-red {
-            color: #B7441C;
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInUp 1s ease-out;
         }
 
-        .img24 {
-            width: 24px;
-            height: 24px;
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: slideInUp 1s ease-out 0.2s both;
         }
 
-        .im56x200 {
-            width: 200px;
-            height: 56px;
-            border: #ffffff 3px solid;
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--gradient-1);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: slideInUp 1s ease-out 0.4s both;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
+        }
+
+        .gear-animation {
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 100px;
+            height: 100px;
+            opacity: 0.3;
+            animation: rotate 10s linear infinite;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .section-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease 0.2s;
+        }
+
+        .section-subtitle.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Vision Section */
+        .vision {
+            background: var(--dark-bg);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vision::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/placeholder.svg?height=600&width=1200') center/cover;
+            opacity: 0.1;
+        }
+
+        .vision-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .world-map {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1s ease;
+        }
+
+        .world-map.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Product Highlight */
+        .product-highlight {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .product-visual {
+            text-align: center;
+        }
+
+        .product-visual img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .product-visual img:hover {
+            transform: scale(1.05);
+        }
+
+        .product-features {
+            list-style: none;
+        }
+
+        .product-features li {
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s ease;
+        }
+
+        .product-features li.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .product-features li::before {
+            content: '⚡';
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Technology Section */
+        .technology {
+            text-align: center;
+        }
+
+        .tech-visual {
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .tech-visual img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .callout {
+            background: var(--gradient-2);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* Use Cases */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .use-case {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .use-case.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .use-case:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .use-case-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .use-case h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Why Minilabz */
+        .why-minilabz {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .feature.animate {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 400px;
+            margin: 2rem auto;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .im56x200:hover {
-            width: 200px;
-            height: 56px;
-            border: #ffffff 5px solid;
+        .newsletter-form button:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
         }
 
-        .btn-white-btm,
-        .btn-white-btm:hover {
-            border: 4px solid #ffffff;
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
         }
 
-        .fdb-block {
-            padding: 6rem 0 !important;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .section-pad-0 {
-            padding: 0rem 0 !important;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
-        .pad-zero {
-            padding: 0rem 0 !important;
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
         }
 
-        .p-l-r-50 {
-            padding-left: 50px;
-            padding-right: 50px;
+        .footer-links a:hover {
+            color: var(--secondary-color);
         }
 
-        .p-t-b-50 {
-            padding-top: 50px;
-            padding-bottom: 50px;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
-    <!-- Google Analytics -->
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-53445913-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <!-- End Google Analytics -->
 </head>
-
 <body>
-    <header>
-        <div class=" text-center">
-            <nav class="navbar">
-                <a class="ml-auto mr-auto" href="https://www.minilabz.com">
-                    <img alt="minilabz logo" src="./imgs/logo.png" height="40" alt="image">
-                </a>
-            </nav>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">🔧 Minilabz</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#vision">Vision</a></li>
+                <li><a href="#product">Product</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-    </header>
-    <section class="fdb-block" style="background-image: linear-gradient(315deg, #4d5dfb 0%, #08c8f6 74%);">
+    </nav>
 
-        <div class=" justify-content-center align-items-center d-flex" style="z-index: auto">
-            <div class="row justify-content-center text-center">
-                <div class="col-12 col-md-8 font-color-white p-l-r-50">
-                    <h1>Pi Bank : Power Bank that is always Fully Powered</h1>
-                    <p class="lead">Power Yourself Anywhere. Never be powerless. Simply Twist 30-secs & charges up to
-                        50% - 100%</p>
-                    <p class="mt-5"><a href="#signup" class="btn btn-primary btn-white-btm">SIGN UP</a></p>
-                </div>
-            </div>
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="gear-animation">
+            <img src="/placeholder.svg?height=100&width=100" alt="Gear Animation">
+        </div>
+        <div class="hero-content">
+            <h1>🔧 Minilabz – Engineering the Future of Self-Powered Tech</h1>
+            <p>From Finland, with love – we turn time and motion into power.</p>
+            <a href="#product" class="cta-button">🔬 Explore Our Innovations</a>
         </div>
     </section>
-    <section class="fdb-block" style="display:none">
-        <div class="">
-            <div class="row justify-content-center">
-                <div class="col-12 col-lg-8 col-xl-8 p-l-r-50">
-                    <h2 class="text-center">Why we need a smart power bank?
-                    </h2>
-                    <p class="lead">
-                        Just like our smartphones, we believe our power banks also can be smart.
-                    </p>
-                    <p class="lead"> And We just happen to build one.</p>
-                    <p class="lead">
-                        Pi Palm takes a few seconds of winding to get fully charged & ready to power any USB device for
-                        the next 30 minutes.
-                    </p>
-                    <p class="lead">
-                        And if we want more power, just wind for a few seconds again.
-                    </p>
-                </div>
-                <div class="col-12 col-lg-8 col-xl-8 text-center p-l-r-50">
-                    <br>
-                    <p class="lead">
-                        <a class="btn btn-primary" href="#signup">SIGN UP</a>
-                    </p>
 
-                    <br>
-                </div>
+    <!-- Vision Section -->
+    <section id="vision" class="vision">
+        <div class="vision-content">
+            <h2 class="section-title fade-in">🌍 The Future is Self-Powered</h2>
+            <p class="section-subtitle fade-in">Imagine a world where every twist, turn, or step powers your device.</p>
+            <div class="world-map fade-in">
+                <img src="/placeholder.svg?height=400&width=600" alt="World Map Animation">
             </div>
+            <p class="fade-in" style="font-size: 1.3rem; font-weight: 600; margin-top: 2rem;">
+                We believe the solution to clean energy is already in your hands.
+            </p>
         </div>
     </section>
-    <section class="fdb-block section-pad-0">
-        <div class="">
-            <div class="row" style="background-color: #CFE2F3;">
-                <img alt="How Pi Palm works" src="./imgs/headerbg.png" style=" max-width: 100%;
-                                max-height: 100%;margin:auto;padding: 2rem 0rem;" />
-            </div>
-        </div>
-    </section>
-    <section class="fdb-block" style="background-image: linear-gradient(315deg, #4d5dfb 0%, #08c8f6 74%);">
 
-        <div class=" justify-content-center align-items-center d-flex" style="z-index: auto">
-            <div class="row justify-content-center text-center">
-                <div class="col-12 col-md-8 font-color-white p-l-r-50">
-                    <h2>Simply Twist 30-secs & charges upto 50% - 100%</h2>
-                    <p class="lead">Simply twist the crown for 30 seconds & it will produce INSTANT POWER 5V/2A for
-                        30mins, enough to charge your devices up 50-100%. No battery, environmental protection and
-                        energy-saving.</p>
-                    <p class="mt-5"><a href="#signup" class="btn btn-primary btn-white-btm">SIGN UP</a></p>
+    <!-- Product Highlight -->
+    <section id="product" class="product-highlight">
+        <h2 class="section-title fade-in">⚡ Meet Pi Bank – Power with a Twist</h2>
+        <div class="product-grid">
+            <div class="product-visual fade-in">
+                <img src="/placeholder.svg?height=400&width=400" alt="Pi Bank Device">
+            </div>
+            <div>
+                <ul class="product-features">
+                    <li class="fade-in">30-sec twist = 30 mins of power</li>
+                    <li class="fade-in">5V/2A output for all USB devices</li>
+                    <li class="fade-in">No battery. No waste. No worries.</li>
+                </ul>
+                <div style="margin-top: 2rem;">
+                    <a href="#newsletter" class="cta-button">🔋 Pre-order Pi Bank</a>
                 </div>
             </div>
         </div>
     </section>
-    <section class="fdb-block section-pad-0">
-        <div class=" align-items-end justify-content-center d-flex">
-            <div class="row align-items-center text-center">
-                <div class="col-12 col-md-6 col-lg-6 p-l-r-50 p-t-b-50">
-                    <h2 class="text-center">One for All. Yes One Power Bank for All USB Device</h2>
-                    <p class="lead">No need to carry a bulky power bank to charge all your devices. Pi Bank changes any
-                        device using Female USB. Charges SmartPhone( iPhone, Samsung, etc ), Watch, GoPro, Drones...</p>
-                    <p class="mt-4 text-center"><a href="#signup" class="btn btn-primary">SIGN UP</a></p>
-                </div>
 
-                <div class="col-12 col-md-6 col-lg-6 pad-zero pad-top-bottom-10px">
-                    <img alt="No need to carry a bulky power bank to charge all your devices. Pi Bank changes any device using Female USB. Charges SmartPhone( iPhone, Samsung, etc ), Watch, GoPro, Drones..."
-                        class="img-fluid rounded-0" src="./imgs/spec.png">
-                </div>
-            </div>
+    <!-- Technology Section -->
+    <section id="technology" class="technology">
+        <h2 class="section-title fade-in">🔒 Patent-Pending Power Core</h2>
+        <p class="section-subtitle fade-in">Our proprietary clockwork generator delivers reliable, clean energy—anytime, anywhere.</p>
+        <div class="tech-visual fade-in">
+            <img src="/placeholder.svg?height=500&width=700" alt="Clockwork Mechanism">
         </div>
+        <div class="callout fade-in">Built without lithium. Built for the planet.</div>
     </section>
-    <section class="fdb-block section-pad-0">
-        <div class="">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-6 col-lg-6 pad-zero">
-                    <img alt="Yes, Our Patent Pending clockwork power generator is a future solution of power. And our first step is to charge any USB devices. Future needs self-sustainable power source & we happen to build one."
-                        class="img-fluid rounded-0" src="./imgs/features.png">
-                </div>
-                <div class="col-12 col-md-6 col-lg-6 text-center p-l-r-50 p-t-b-50">
-                    <h2>We value your time & Yes we convert time to Power.</h2>
-                    <p class="lead">Yes, Our Patent Pending clockwork power generator is a future solution of power. And
-                        our first step is to charge any USB devices. Future needs self-sustainable power source & we
-                        happen to build one.
-                    </p>
-                    <p class="mt-4">
-                        <a class="btn btn-primary" href="#signup">SIGN UP</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="fdb-block" style="background-color: #4d5dfb;
-        background-image: linear-gradient(315deg, #4d5dfb 0%, #08c8f6 74%);">
-            <div id="signup" class="justify-content-center">Comming Sooooon
-        </div>
-    </section>
-    <section class="fdb-block">
-        <div class=" ">
-            <div class="row text-center justify-content-center">
-                <div class="col-12">
-                    <h1>Made with <img alt="with love by minilabz" src="./imgs/heart.png" height="40" alt="image"> by
-                        <img alt="minilabz logo" src="./imgs/logo.png" height="50" alt="image"> from Finland</h1>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer class="fdb-block bg-dark font-color-white">
-        <div class="">
-            <div class="row text-center justify-content-center">
-                <div class="col-12 col-md-8 col-lg-7">
-                    <p class="h4">
 
-                        <img alt="minilabz email id" style="width:24px;height:24px" src="./imgs/mail.png" />
-                        <a href="mailto:pr@minilabz.com" class="card-link font-color-white">pr@minilabz.com
-                        </a>
-                    </p>
-                    <p>
-                        <br>
-                    </p>
-                    <p class="h4">Follow us</p>
-                    <p class="h2">
-
-                        <a title="minilabz facebook page" href="https://www.facebook.com/minilabzworld"
-                            class="card-link">
-                            <img alt="minilabz facebook page" class="img24"
-                                src="https://cdnjs.cloudflare.com/ajax/libs/webicons/2.0.0/webicons/webicon-facebook.svg" />
-                        </a>
-                        <a title="minilabz twitter handel" href="https://twitter.com/Minilabz" class="card-link">
-                            <img alt="minilabz twitter handel" class="img24"
-                                src="https://cdnjs.cloudflare.com/ajax/libs/webicons/2.0.0/webicons/webicon-twitter.svg" />
-                        </a>
-                    </p>
-                </div>
+    <!-- Use Cases -->
+    <section class="use-cases">
+        <h2 class="section-title fade-in">📦 Use It Anywhere</h2>
+        <div class="use-cases-grid">
+            <div class="use-case fade-in">
+                <div class="use-case-icon">🏕️</div>
+                <h3>Camping & Outdoors</h3>
+                <p>Power your devices in the wilderness</p>
             </div>
+            <div class="use-case fade-in">
+                <div class="use-case-icon">🌐</div>
+                <h3>Travel & Remote Work</h3>
+                <p>Stay connected anywhere in the world</p>
+            </div>
+            <div class="use-case fade-in">
+                <div class="use-case-icon">🚑</div>
+                <h3>Emergency Backup</h3>
+                <p>Reliable power when you need it most</p>
+            </div>
+            <div class="use-case fade-in">
+                <div class="use-case-icon">🌎</div>
+                <h3>Off-the-grid Living</h3>
+                <p>Sustainable power for remote locations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Minilabz -->
+    <section class="why-minilabz">
+        <h2 class="section-title fade-in">🚀 Why Choose Minilabz?</h2>
+        <div class="features-grid">
+            <div class="feature fade-in">
+                <div class="feature-icon">🇫🇮</div>
+                <h3>Finnish Engineering</h3>
+                <p>Precision and quality from the Nordic innovation hub</p>
+            </div>
+            <div class="feature fade-in">
+                <div class="feature-icon">♻️</div>
+                <h3>Sustainability First</h3>
+                <p>Clean energy solutions for a better tomorrow</p>
+            </div>
+            <div class="feature fade-in">
+                <div class="feature-icon">💡</div>
+                <h3>Innovation-Driven</h3>
+                <p>Pushing the boundaries of what's possible</p>
+            </div>
+            <div class="feature fade-in">
+                <div class="feature-icon">🔬</div>
+                <h3>Science + Design Harmony</h3>
+                <p>Where engineering meets beautiful design</p>
+            </div>
+        </div>
+        <div style="margin-top: 3rem;">
+            <a href="#newsletter" class="cta-button">🎯 Join Our Mission</a>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section id="newsletter" class="newsletter">
+        <h2 class="section-title fade-in">📨 Stay in the Loop</h2>
+        <p class="section-subtitle fade-in">Be first to hear about product launches, research drops, and beta programs.</p>
+        <form class="newsletter-form fade-in">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">About Minilabz</a>
+                <a href="#">Careers</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact</a>
+            </div>
+            <div>
+                <p>📧 pr@minilabz.com</p>
+                <p>📍 Helsinki, Finland</p>
+            </div>
+            <div class="social-links">
+                <a href="#" title="Facebook">f</a>
+                <a href="#" title="Twitter">t</a>
+                <a href="#" title="LinkedIn">in</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">
+                © 2024 Minilabz. All rights reserved.
+            </p>
         </div>
     </footer>
-</body>
 
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in, .section-title, .section-subtitle, .use-case, .feature, .product-features li, .world-map').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Staggered animation for product features
+        const productFeatures = document.querySelectorAll('.product-features li');
+        productFeatures.forEach((feature, index) => {
+            feature.style.transitionDelay = `${index * 0.2}s`;
+        });
+
+        // Staggered animation for use cases
+        const useCases = document.querySelectorAll('.use-case');
+        useCases.forEach((useCase, index) => {
+            useCase.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Staggered animation for features
+        const features = document.querySelectorAll('.feature');
+        features.forEach((feature, index) => {
+            feature.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            alert(`Thank you for subscribing with email: ${email}`);
+            e.target.reset();
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
 </html>
