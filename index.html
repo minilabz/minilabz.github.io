@@ -13,15 +13,17 @@
         }
 
         :root {
-            --primary-color: #2d5016;
+            --primary-color: #1e4b2e;
             --secondary-color: #4ade80;
-            --accent-color: #059669;
+            --accent-color: #b85450;
+            --logo-red: #b85450;
             --dark-bg: #1f2937;
             --light-bg: #ffffff;
             --text-primary: #1f2937;
             --text-secondary: #6b7280;
-            --gradient-1: linear-gradient(135deg, #2d5016, #4ade80);
-            --gradient-2: linear-gradient(135deg, #059669, #10b981);
+            --gradient-1: linear-gradient(135deg, #1e4b2e, #4ade80);
+            --gradient-2: linear-gradient(135deg, #b85450, #d97470);
+            --gradient-3: linear-gradient(135deg, #1e4b2e, #b85450);
             --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
         }
 
@@ -86,7 +88,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--primary-color);
+            color: var(--logo-red);
         }
         
         /* Mobile Menu */
@@ -188,7 +190,7 @@
         .cta-button {
             display: inline-block;
             padding: 1rem 2rem;
-            background: var(--gradient-1);
+            background: var(--gradient-2);
             color: white;
             text-decoration: none;
             border-radius: 50px;
@@ -196,12 +198,12 @@
             font-size: 1.1rem;
             transition: all 0.3s ease;
             animation: slideInUp 1s ease-out 0.4s both;
-            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(184, 84, 80, 0.3);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
+            box-shadow: 0 15px 40px rgba(184, 84, 80, 0.4);
         }
 
         .gear-animation {
@@ -342,6 +344,7 @@
             content: '⚡';
             margin-right: 1rem;
             font-size: 1.5rem;
+            color: var(--logo-red);
         }
 
         /* Technology Section */
@@ -362,7 +365,7 @@
         }
 
         .callout {
-            background: var(--gradient-2);
+            background: var(--gradient-3);
             color: white;
             padding: 1.5rem 2rem;
             border-radius: 50px;
@@ -519,7 +522,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--secondary-color);
+            color: var(--logo-red);
         }
 
         .social-links {
@@ -533,7 +536,7 @@
             display: inline-block;
             width: 40px;
             height: 40px;
-            background: var(--gradient-1);
+            background: var(--gradient-2);
             border-radius: 50%;
             text-align: center;
             line-height: 40px;
@@ -544,7 +547,7 @@
 
         .social-links a:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 102, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(184, 84, 80, 0.3);
         }
 
         /* Animations */
@@ -796,22 +799,22 @@
         <h2 class="section-title fade-in">Applications Across Industries</h2>
         <div class="use-cases-grid">
             <div class="use-case fade-in">
-                <div class="use-case-icon" style="color: var(--primary-color); font-size: 3rem; font-weight: bold;">R</div>
+                <div class="use-case-icon" style="color: var(--logo-red); font-size: 3rem; font-weight: bold;">R</div>
                 <h3>Residential Solar</h3>
                 <p>Complete home energy solutions with solar panels and battery storage</p>
             </div>
             <div class="use-case fade-in">
-                <div class="use-case-icon" style="color: var(--primary-color); font-size: 3rem; font-weight: bold;">C</div>
+                <div class="use-case-icon" style="color: var(--logo-red); font-size: 3rem; font-weight: bold;">C</div>
                 <h3>Commercial & Industrial</h3>
                 <p>Large-scale renewable energy systems for businesses and facilities</p>
             </div>
             <div class="use-case fade-in">
-                <div class="use-case-icon" style="color: var(--primary-color); font-size: 3rem; font-weight: bold;">U</div>
+                <div class="use-case-icon" style="color: var(--logo-red); font-size: 3rem; font-weight: bold;">U</div>
                 <h3>Utility Scale</h3>
                 <p>Mega-scale renewable energy projects for power grid integration</p>
             </div>
             <div class="use-case fade-in">
-                <div class="use-case-icon" style="color: var(--primary-color); font-size: 3rem; font-weight: bold;">M</div>
+                <div class="use-case-icon" style="color: var(--logo-red); font-size: 3rem; font-weight: bold;">M</div>
                 <h3>Microgrids</h3>
                 <p>Smart distributed energy systems for communities and remote areas</p>
             </div>
