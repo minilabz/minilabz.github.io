@@ -1,962 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minilabz Oy – Leading Renewable Energy Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #1e4b2e;
-            --secondary-color: #4ade80;
-            --accent-color: #b85450;
-            --logo-red: #b85450;
-            --dark-bg: #1f2937;
-            --light-bg: #ffffff;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --gradient-1: linear-gradient(135deg, #1e4b2e, #4ade80);
-            --gradient-2: linear-gradient(135deg, #b85450, #d97470);
-            --gradient-3: linear-gradient(135deg, #1e4b2e, #b85450);
-            --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 1rem 2rem;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 40px;
-            width: auto;
-            max-width: 200px;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--logo-red);
-        }
-        
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-        
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--text-primary);
-            margin: 3px 0;
-            transition: 0.3s;
-        }
-        
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            top: 70px;
-            left: 0;
-            width: 100%;
-            background: white;
-            box-shadow: var(--shadow);
-            z-index: 999;
-        }
-        
-        .mobile-nav.active {
-            display: block;
-        }
-        
-        .mobile-nav ul {
-            list-style: none;
-            padding: 1rem 2rem;
-        }
-        
-        .mobile-nav ul li {
-            margin: 1rem 0;
-        }
-        
-        .mobile-nav ul li a {
-            text-decoration: none;
-            color: var(--text-primary);
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 80%, rgba(45, 80, 22, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(74, 222, 128, 0.1) 0%, transparent 50%);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: slideInUp 1s ease-out;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            animation: slideInUp 1s ease-out 0.2s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: var(--gradient-2);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            animation: slideInUp 1s ease-out 0.4s both;
-            box-shadow: 0 10px 30px rgba(184, 84, 80, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(184, 84, 80, 0.4);
-        }
-
-        .gear-animation {
-            position: absolute;
-            top: 20%;
-            right: 10%;
-            width: 100px;
-            height: 100px;
-            opacity: 0.3;
-            animation: rotate 10s linear infinite;
-        }
-
-        /* Section Styles */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .section-title.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 3rem;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease 0.2s;
-        }
-
-        .section-subtitle.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Vision Section */
-        .vision {
-            background: var(--dark-bg);
-            color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .vision::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('/placeholder.svg?height=600&width=1200') center/cover;
-            opacity: 0.1;
-        }
-
-        .vision-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .world-map {
-            width: 100%;
-            max-width: 600px;
-            margin: 2rem auto;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 1s ease;
-        }
-
-        .world-map.animate {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Product Highlight */
-        .product-highlight {
-            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            margin-top: 3rem;
-        }
-
-        .product-visual {
-            text-align: center;
-        }
-
-        .product-visual img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-        }
-
-        .product-visual img:hover {
-            transform: scale(1.05);
-        }
-
-        .product-features {
-            list-style: none;
-        }
-
-        .product-features li {
-            padding: 1rem 0;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            opacity: 0;
-            transform: translateX(-30px);
-            transition: all 0.6s ease;
-        }
-
-        .product-features li.animate {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .product-features li::before {
-            content: '⚡';
-            margin-right: 1rem;
-            font-size: 1.5rem;
-            color: var(--logo-red);
-        }
-
-        /* Technology Section */
-        .technology {
-            text-align: center;
-        }
-
-        .tech-visual {
-            margin: 3rem 0;
-            position: relative;
-        }
-
-        .tech-visual img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-            animation: pulse 3s ease-in-out infinite;
-        }
-
-        .callout {
-            background: var(--gradient-3);
-            color: white;
-            padding: 1.5rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 2rem;
-            display: inline-block;
-            animation: bounce 2s ease-in-out infinite;
-        }
-
-        /* Use Cases */
-        .use-cases-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .use-case {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .use-case.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .use-case:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .use-case-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .use-case h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Why Minilabz */
-        .why-minilabz {
-            background: var(--gradient-1);
-            color: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            opacity: 0;
-            transform: scale(0.9);
-        }
-
-        .feature.animate {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .feature:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: scale(1.05);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Newsletter */
-        .newsletter {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-            color: white;
-            text-align: center;
-        }
-
-        .newsletter-form {
-            display: flex;
-            max-width: 400px;
-            margin: 2rem auto;
-            gap: 1rem;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 1rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .newsletter-form button {
-            padding: 1rem 2rem;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .newsletter-form button:hover {
-            background: #e55a2b;
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark-bg);
-            color: white;
-            padding: 3rem 2rem 2rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--logo-red);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-2);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(184, 84, 80, 0.3);
-        }
-
-        /* Animations */
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Responsive Design */
-        
-        /* Mobile devices (up to 576px) */
-        @media (max-width: 576px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-toggle {
-                display: flex;
-            }
-            
-            nav {
-                padding: 1rem;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .product-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .use-cases-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            section {
-                padding: 2rem 1rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .cta-button {
-                padding: 0.8rem 1.5rem;
-                font-size: 1rem;
-            }
-            
-            .logo img {
-                height: 35px;
-                max-width: 150px;
-            }
-        }
-        
-        /* Tablets (577px to 768px) */
-        @media (min-width: 577px) and (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-toggle {
-                display: flex;
-            }
-            
-            .product-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-            
-            .use-cases-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            
-            section {
-                padding: 3rem 2rem;
-            }
-        }
-        
-        /* Large tablets and small desktops (769px to 992px) */
-        @media (min-width: 769px) and (max-width: 992px) {
-            .use-cases-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-        }
-        
-        /* Large desktops (993px and up) */
-        @media (min-width: 993px) {
-            .use-cases-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
-            .features-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minilabz Oy — AI Software & Intelligent Energy</title>
+<meta name="description" content="Minilabz Oy builds practical AI software, automation and intelligent energy systems from Tampere, Finland. Start with a focused 2–4 week AI Pilot.">
+<style>
+:root {
+  --ink:#17211b; --muted:#5f6d64; --green:#1e4b2e; --green2:#2f7a47;
+  --mint:#eaf7ee; --paper:#fbfdfb; --line:#dce7df; --red:#b85450; --white:#fff;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper);line-height:1.55}
+a{color:inherit} .wrap{max-width:1160px;margin:auto;padding:0 24px}
+nav{position:sticky;top:0;z-index:20;background:rgba(251,253,251,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo img{height:38px;max-width:190px;object-fit:contain} .links{display:flex;gap:24px;align-items:center;font-size:14px}
+.links a{text-decoration:none;color:var(--muted)} .links a:hover{color:var(--green)}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:999px;text-decoration:none;font-weight:700;border:1px solid var(--green);transition:.2s}
+.btn.primary{background:var(--green);color:white} .btn.primary:hover{transform:translateY(-1px);background:#153b23}
+.btn.secondary{background:white;color:var(--green)} .btn.secondary:hover{background:var(--mint)}
+.hero{padding:92px 0 72px;background:radial-gradient(circle at 80% 10%,#dff4e5 0,transparent 35%),linear-gradient(180deg,#fbfdfb,#f3faf5)}
+.eyebrow{display:inline-block;padding:7px 11px;border:1px solid #cce3d2;background:white;border-radius:999px;color:var(--green);font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+h1{font-size:clamp(46px,7vw,82px);line-height:.98;letter-spacing:-.055em;margin:22px 0;max-width:900px}
+.lead{font-size:clamp(18px,2.2vw,24px);color:var(--muted);max-width:760px;margin:0 0 30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap} .proof{margin-top:42px;display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.proof span{padding-right:18px;border-right:1px solid var(--line)} .proof span:last-child{border:0}
+section{padding:82px 0} .section-head{max-width:720px;margin-bottom:36px}
+.kicker{color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+h2{font-size:clamp(32px,4.5vw,54px);line-height:1.05;letter-spacing:-.04em;margin:10px 0 14px}
+.section-head p{color:var(--muted);font-size:18px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px} .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:white;border:1px solid var(--line);border-radius:22px;padding:26px;min-height:220px}
+.card .num{font-size:12px;color:var(--red);font-weight:800} .card h3{font-size:21px;margin:26px 0 9px} .card p{color:var(--muted);margin:0}
+.pilot{background:var(--ink);color:white} .pilot .section-head p{color:#cbd7cf}
+.pilotbox{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}
+.offer,.scope{border:1px solid #39473e;border-radius:24px;padding:32px;background:#202c24}
+.price{font-size:52px;font-weight:850;letter-spacing:-.04em;margin:8px 0} .small{color:#b9c8be;font-size:14px}
+.checks{padding:0;margin:24px 0;list-style:none} .checks li{margin:12px 0;padding-left:25px;position:relative} .checks li:before{content:"✓";position:absolute;left:0;color:#76d391;font-weight:900}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:10px} .step{padding:20px;border-top:2px solid var(--green)} .step b{display:block;margin:7px 0} .step span{color:var(--muted);font-size:14px}
+.energy{background:linear-gradient(135deg,#eef8f1,#f8fbf9)} .energy-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.tags{display:flex;flex-wrap:wrap;gap:10px} .tag{background:white;border:1px solid var(--line);padding:10px 13px;border-radius:999px;font-size:14px}
+.products .card:first-child{border-color:#9fc8aa;background:#f3faf5}
+.cta{padding:72px 0;background:var(--green);color:white;text-align:center} .cta p{color:#d9ecdf;font-size:18px;max-width:650px;margin:0 auto 24px}
+.cta .btn{border-color:white;background:white;color:var(--green)}
+footer{padding:36px 0;background:#111914;color:#c4d0c8} .foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap} .foot strong{color:white}
+.note{font-size:12px;color:#7e8d83;margin-top:22px}
+@media(max-width:900px){.grid4{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr}.pilotbox,.energy-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.links a:not(.btn){display:none}}
+@media(max-width:560px){.wrap{padding:0 18px}.hero{padding-top:64px}.grid4,.steps{grid-template-columns:1fr}h1{font-size:48px}.price{font-size:42px}section{padding:64px 0}}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="imgs/logo.png" alt="Minilabz Oy - Renewable Energy Solutions" />
-            </div>
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#vision">Vision</a></li>
-                <li><a href="#solutions">Solutions</a></li>
-                <li><a href="#technology">Innovation</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div class="mobile-nav" id="mobileNav">
-            <ul>
-                <li><a href="#hero" onclick="closeMobileMenu()">Home</a></li>
-                <li><a href="#vision" onclick="closeMobileMenu()">Vision</a></li>
-                <li><a href="#solutions" onclick="closeMobileMenu()">Solutions</a></li>
-                <li><a href="#technology" onclick="closeMobileMenu()">Innovation</a></li>
-                <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav><div class="wrap nav">
+  <a class="logo" href="#top"><img src="imgs/logo.png" alt="Minilabz Oy"></a>
+  <div class="links"><a href="#solutions">Solutions</a><a href="#pilot">AI Pilot</a><a href="#products">Products</a><a href="#energy">Energy</a><a class="btn primary" href="mailto:pr@minilabz.com?subject=AI%20Pilot%20Enquiry">Start an AI Pilot</a></div>
+</div></nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero">
-        <div class="hero-content">
-            <h1>Powering Tomorrow with Clean Energy Solutions</h1>
-            <p>Leading renewable energy innovations from Finland – transforming how the world generates and consumes sustainable power.</p>
-            <a href="#solutions" class="cta-button">Explore Our Solutions</a>
-        </div>
-    </section>
+<header class="hero" id="top"><div class="wrap">
+  <span class="eyebrow">Tampere, Finland · AI Technology Company</span>
+  <h1>AI Software.<br>Intelligent Energy.</h1>
+  <p class="lead">We build practical AI products and intelligent software that automate work, optimise systems and make energy smarter.</p>
+  <div class="actions">
+    <a class="btn primary" href="#pilot">Start an AI Pilot</a>
+    <a class="btn secondary" href="#solutions">Explore Minilabz</a>
+  </div>
+  <div class="proof"><span>2–4 week focused pilots</span><span>Working software, not slideware</span><span>Built in Finland · Designed for global business</span></div>
+</div></header>
 
-    <!-- Vision Section -->
-    <section id="vision" class="vision">
-        <div class="vision-content">
-            <h2 class="section-title fade-in">Building a Sustainable Energy Future</h2>
-            <p class="section-subtitle fade-in">We envision a world powered entirely by renewable energy sources – where clean technology meets innovative engineering.</p>
-            <p class="fade-in" style="font-size: 1.3rem; font-weight: 600; margin-top: 2rem;">
-                Pioneering solutions that make renewable energy accessible, efficient, and reliable for everyone.
-            </p>
-        </div>
-    </section>
+<section id="solutions"><div class="wrap">
+  <div class="section-head"><span class="kicker">What we build</span><h2>Start with a real problem. Ship a measurable solution.</h2><p>Minilabz combines AI, software engineering and rapid product development to move from business problem to working implementation.</p></div>
+  <div class="grid4">
+    <article class="card"><span class="num">01</span><h3>AI Agents</h3><p>Purpose-built agents for repetitive operational work, research, document handling and internal workflows.</p></article>
+    <article class="card"><span class="num">02</span><h3>AI Product Engineering</h3><p>Prototype and integrate AI capabilities into existing SaaS products and business applications.</p></article>
+    <article class="card"><span class="num">03</span><h3>Intelligent Automation</h3><p>Connect AI with business data and systems to reduce manual work and improve process speed.</p></article>
+    <article class="card"><span class="num">04</span><h3>Energy Intelligence</h3><p>Apply software and AI to energy monitoring, forecasting, optimisation and intelligent control.</p></article>
+  </div>
+</div></section>
 
-    <!-- Product Highlight -->
-    <section id="solutions" class="product-highlight">
-        <h2 class="section-title fade-in">Our Renewable Energy Solutions</h2>
-        <div class="product-grid">
-            <div class="product-visual fade-in">
-                <div style="background: var(--gradient-1); border-radius: 20px; padding: 3rem; color: white; text-align: center;">
-                    <h3 style="font-size: 2rem; margin-bottom: 1rem;">Solar + Storage</h3>
-                    <p style="font-size: 1.1rem;">Advanced photovoltaic systems</p>
-                </div>
-            </div>
-            <div>
-                <ul class="product-features">
-                    <li class="fade-in">High-efficiency solar panel installations</li>
-                    <li class="fade-in">Smart energy storage solutions</li>
-                    <li class="fade-in">Grid-tie and off-grid capabilities</li>
-                    <li class="fade-in">Real-time monitoring and optimization</li>
-                </ul>
-                <div style="margin-top: 2rem; text-align: center;">
-                    <a href="#contact" class="cta-button">Get a Quote</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<section class="pilot" id="pilot"><div class="wrap">
+  <div class="section-head"><span class="kicker">First commercial offer</span><h2>Minilabz AI Pilot</h2><p>One business problem. One working AI solution. One measurable outcome.</p></div>
+  <div class="pilotbox">
+    <div class="offer">
+      <div class="small">FIXED-SCOPE STARTING POINT</div><div class="price">From €2,500</div><div class="small">Typical duration: 2–4 weeks · Final scope and price confirmed after discovery</div>
+      <ul class="checks"><li>Problem and workflow discovery</li><li>Working AI prototype or automation</li><li>Integration with agreed data/system interfaces</li><li>Defined success metric and validation</li><li>Deployment and productisation roadmap</li></ul>
+      <a class="btn primary" href="mailto:pr@minilabz.com?subject=Minilabz%20AI%20Pilot">Discuss your pilot</a>
+    </div>
+    <div class="scope">
+      <span class="kicker">Good pilot problems</span>
+      <ul class="checks"><li>Document-heavy manual workflows</li><li>Repeated research and reporting</li><li>Operational data that needs decisions</li><li>Existing SaaS that needs an AI capability</li><li>Energy data that needs monitoring or optimisation</li></ul>
+      <p class="small">We only propose a pilot where the expected outcome can be defined and measured.</p>
+    </div>
+  </div>
+</div></section>
 
-    <!-- Technology Section -->
-    <section id="technology" class="technology">
-        <h2 class="section-title fade-in">Innovation at the Core</h2>
-        <p class="section-subtitle fade-in">Our cutting-edge renewable energy technologies deliver maximum efficiency and reliability for sustainable power generation.</p>
-        <div class="callout fade-in">Advanced materials. Smart systems. Clean future.</div>
-    </section>
+<section><div class="wrap">
+  <div class="section-head"><span class="kicker">How we work</span><h2>Fast enough to learn. Structured enough to ship.</h2></div>
+  <div class="steps">
+    <div class="step"><span>01</span><b>Discover</b><span>Choose the highest-value problem.</span></div>
+    <div class="step"><span>02</span><b>Prototype</b><span>Prove the core workflow quickly.</span></div>
+    <div class="step"><span>03</span><b>Deploy</b><span>Connect the agreed systems and data.</span></div>
+    <div class="step"><span>04</span><b>Measure</b><span>Validate against the success metric.</span></div>
+    <div class="step"><span>05</span><b>Productise</b><span>Turn repeated value into reusable software.</span></div>
+  </div>
+</div></section>
 
-    <!-- Use Cases -->
-    <section class="use-cases">
-        <h2 class="section-title fade-in">Applications Across Industries</h2>
-        <div class="use-cases-grid">
-            <div class="use-case fade-in">
-                <div class="use-case-icon" style="color: var(--logo-red); font-size: 3rem; font-weight: bold;">R</div>
-                <h3>Residential Solar</h3>
-                <p>Complete home energy solutions with solar panels and battery storage</p>
-            </div>
-            <div class="use-case fade-in">
-                <div class="use-case-icon" style="color: var(--logo-red); font-size: 3rem; font-weight: bold;">C</div>
-                <h3>Commercial & Industrial</h3>
-                <p>Large-scale renewable energy systems for businesses and facilities</p>
-            </div>
-            <div class="use-case fade-in">
-                <div class="use-case-icon" style="color: var(--logo-red); font-size: 3rem; font-weight: bold;">U</div>
-                <h3>Utility Scale</h3>
-                <p>Mega-scale renewable energy projects for power grid integration</p>
-            </div>
-            <div class="use-case fade-in">
-                <div class="use-case-icon" style="color: var(--logo-red); font-size: 3rem; font-weight: bold;">M</div>
-                <h3>Microgrids</h3>
-                <p>Smart distributed energy systems for communities and remote areas</p>
-            </div>
-        </div>
-    </section>
+<section class="products" id="products"><div class="wrap">
+  <div class="section-head"><span class="kicker">Products</span><h2>Customer problems become scalable products.</h2><p>Our product roadmap is validation-led: paid pilots identify repeatable problems; reusable components become software products.</p></div>
+  <div class="grid3">
+    <article class="card"><span class="num">VALIDATION TRACK</span><h3>AI Operations Agent</h3><p>Workflow and operational automation for SMEs. Candidate #1 because it offers the fastest path to a paid pilot and repeatable SaaS.</p></article>
+    <article class="card"><span class="num">VALIDATION TRACK</span><h3>AI Engineering Intelligence</h3><p>Software-delivery, QA and release intelligence for technology teams. Strong founder-domain fit and B2B potential.</p></article>
+    <article class="card"><span class="num">STRATEGIC VERTICAL</span><h3>Energy Intelligence</h3><p>Monitoring, forecasting and optimisation software for energy systems. Long-term bridge between Minilabz's energy heritage and AI platform.</p></article>
+  </div>
+</div></section>
 
-    <!-- Why Minilabz -->
-    <section class="why-minilabz">
-        <h2 class="section-title fade-in">Why Choose Minilabz?</h2>
-        <div class="features-grid">
-            <div class="feature fade-in">
-                <div class="feature-icon" style="color: white; font-size: 2.5rem; font-weight: bold;">FI</div>
-                <h3>Finnish Engineering</h3>
-                <p>Precision and quality from the Nordic innovation hub</p>
-            </div>
-            <div class="feature fade-in">
-                <div class="feature-icon" style="color: white; font-size: 2.5rem; font-weight: bold;">ECO</div>
-                <h3>Sustainability First</h3>
-                <p>Clean energy solutions for a carbon-neutral future</p>
-            </div>
-            <div class="feature fade-in">
-                <div class="feature-icon" style="color: white; font-size: 2.5rem; font-weight: bold;">R&D</div>
-                <h3>Innovation-Driven</h3>
-                <p>Advanced research in renewable energy technologies</p>
-            </div>
-            <div class="feature fade-in">
-                <div class="feature-icon" style="color: white; font-size: 2.5rem; font-weight: bold;">360</div>
-                <h3>Complete Solutions</h3>
-                <p>End-to-end renewable energy project management</p>
-            </div>
-        </div>
-        <div style="margin-top: 3rem; text-align: center;">
-            <a href="#contact" class="cta-button">Join Our Mission</a>
-        </div>
-    </section>
+<section class="energy" id="energy"><div class="wrap energy-grid">
+  <div><span class="kicker">Intelligent Energy</span><h2>Engineering curiosity, now amplified by AI.</h2><p class="lead" style="font-size:19px">Minilabz began by exploring renewable-energy technology. We are extending that work with software, data and AI—toward energy systems that can monitor, predict and optimise themselves.</p></div>
+  <div class="tags"><span class="tag">Energy monitoring</span><span class="tag">Demand forecasting</span><span class="tag">Anomaly detection</span><span class="tag">Energy optimisation</span><span class="tag">Intelligent control</span><span class="tag">Renewable-energy R&D</span></div>
+</div></section>
 
-    <!-- Newsletter -->
-    <section id="newsletter" class="newsletter">
-        <h2 class="section-title fade-in">Stay Connected</h2>
-        <p class="section-subtitle fade-in">Get updates on our latest renewable energy projects, innovations, and sustainability initiatives.</p>
-        <!-- <form class="newsletter-form fade-in">
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-        </form> -->
-    </section>
+<section><div class="wrap">
+  <div class="section-head"><span class="kicker">Why Minilabz</span><h2>Build small. Validate early. Scale what works.</h2></div>
+  <div class="grid4">
+    <article class="card"><h3>Finland-based</h3><p>Minilabz Oy is a Finnish technology company based in Tampere.</p></article>
+    <article class="card"><h3>AI + Software</h3><p>Practical engineering from prototype through integration and deployment.</p></article>
+    <article class="card"><h3>Validation-led</h3><p>Paid pilots create customer evidence before larger product investment.</p></article>
+    <article class="card"><h3>Global by design</h3><p>Software products and repeatable solutions designed for international markets.</p></article>
+  </div>
+</div></section>
 
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="footer-content">
-            <!-- <div class="footer-links">
-                <a href="#">About Minilabz</a>
-                <a href="#">Careers</a>
-                <a href="#">Blog</a>
-                <a href="#">Contact</a>
-            </div> -->
-            <div>
-                <p style="margin-bottom: 0.5rem;"><strong>Contact:</strong> pr@minilabz.com</p>
-                <p><strong>Location:</strong> Tampere, Finland</p>
-            </div>
-            <div class="social-links">
-                <a href="https://www.facebook.com/minilabzworld/" target="_blank" title="Facebook">f</a>
-                <a href="https://x.com/minilabz" title="Twitter">t</a>
-                <a href="https://www.linkedin.com/company/minilabz" target="_blank" title="LinkedIn">in</a>
-            </div>
-            <p style="margin-top: 2rem; opacity: 0.7;">
-                © 2024 Minilabz. All rights reserved.
-            </p>
-        </div>
-    </footer>
+<section class="cta"><div class="wrap"><h2>Have a problem AI could solve?</h2><p>Start with a focused pilot. We will define the problem, measurable outcome and smallest useful implementation before we build.</p><a class="btn" href="mailto:pr@minilabz.com?subject=Minilabz%20AI%20Pilot">Start an AI Pilot</a></div></section>
 
-    <script>
-        // Mobile menu functions
-        function toggleMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            mobileNav.classList.toggle('active');
-        }
-        
-        function closeMobileMenu() {
-            const mobileNav = document.getElementById('mobileNav');
-            mobileNav.classList.remove('active');
-        }
-        
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in, .section-title, .section-subtitle, .use-case, .feature, .product-features li, .world-map').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Staggered animation for product features
-        const productFeatures = document.querySelectorAll('.product-features li');
-        productFeatures.forEach((feature, index) => {
-            feature.style.transitionDelay = `${index * 0.2}s`;
-        });
-
-        // Staggered animation for use cases
-        const useCases = document.querySelectorAll('.use-case');
-        useCases.forEach((useCase, index) => {
-            useCase.style.transitionDelay = `${index * 0.1}s`;
-        });
-
-        // Staggered animation for features
-        const features = document.querySelectorAll('.feature');
-        features.forEach((feature, index) => {
-            feature.style.transitionDelay = `${index * 0.1}s`;
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+<footer><div class="wrap foot"><div><strong>Minilabz Oy</strong><br>Tampere, Finland<br>Business ID: 3099625-9</div><div><strong>Contact</strong><br><a href="mailto:pr@minilabz.com">pr@minilabz.com</a><br>minilabz.com</div></div><div class="wrap note">© 2026 Minilabz Oy. Product and pilot descriptions are commercial positioning and should be updated as customer validation progresses.</div></footer>
 </body>
 </html>
